@@ -1,0 +1,9 @@
+<svg width="360" height="260" viewBox="0 0 360 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect x="126" y="18" width="108" height="108" rx="24" fill="#2563EB"/>
+  <path d="M151.313 99V45H164.813V66.4313L185.063 45H201.6L178.819 68.7938L203.625 99H186.413L168.525 77.4L164.813 81.2812V99H151.313Z" fill="#FFFFFF"/>
+  <path d="M203.625 33.1875H215.438V46.6875H228.938V58.5H215.438V72H203.625V58.5H190.125V46.6875H203.625V33.1875Z" fill="#DBEAFE"/>
+  <text x="180" y="201" text-anchor="middle" font-family="Inter, Arial, Helvetica, sans-serif" font-size="48" font-weight="800" letter-spacing="-1">
+    <tspan fill="#F5F8FB">Korea</tspan>
+    <tspan dx="9" fill="#1E63FF">Plus+</tspan>
+  </text>
+</svg>
