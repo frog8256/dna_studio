@@ -15,10 +15,6 @@ export function Header() {
         ))}
       </nav>
 
-      <a className="talk-button header-cta button-primary" href="#contact">
-        Let&apos;s Talk
-      </a>
-
       <button className="menu-button" type="button" aria-label="Open navigation menu">
         <span aria-hidden="true" />
         <span aria-hidden="true" />
