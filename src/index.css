@@ -1759,31 +1759,12 @@ code {
   grid-template-columns: minmax(220px, 0.72fr) minmax(0, 1fr);
   gap: var(--contact-footer-gap);
   align-items: center;
-  border: 1px solid rgba(205, 232, 255, 0.16);
-  border-radius: 32px 42px 30px 38px;
-  padding-inline: clamp(20px, 4vw, 48px);
-  background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.018), transparent 34% 76%, rgba(255, 255, 255, 0.01));
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.32),
-    0 22px 68px rgba(0, 0, 0, 0.16);
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
-  overflow: hidden;
+  border-top: 1px solid rgba(205, 232, 255, 0.18);
+  padding-top: clamp(38px, 6vw, 76px);
 }
 
 .contact-footer::after {
-  position: absolute;
-  right: 0;
-  bottom: 20px;
-  width: 360px;
-  height: 180px;
-  opacity: 0.13;
-  background:
-    repeating-linear-gradient(90deg, transparent 0 24px, rgba(92, 200, 255, 0.45) 25px 26px, transparent 27px 58px),
-    radial-gradient(circle, rgba(255, 255, 255, 0.72) 0 1px, transparent 1.6px);
-  background-size: auto, 54px 54px;
-  content: "";
+  display: none;
 }
 
 .footer-brand {
