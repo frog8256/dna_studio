@@ -44,7 +44,12 @@ export function ServicesGrid() {
               </div>
             </div>
             <p>{service.preview}</p>
-            <a className="service-detail-link" href="#contact">
+            <a
+              className="service-detail-link"
+              href={service.url ?? '#contact'}
+              rel={service.url ? 'noreferrer' : undefined}
+              target={service.url ? '_blank' : undefined}
+            >
               View Details
             </a>
           </article>

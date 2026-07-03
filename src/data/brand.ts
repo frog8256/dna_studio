@@ -14,6 +14,7 @@ export const services = [
     tone: 'korea',
     initials: 'KP',
     preview: 'Culture, life, and local intelligence for people connected to Korea.',
+    url: 'https://koreaplus.me.kr/',
     logo: {
       src: '/brand/korea-plus-stacked.svg',
       alt: 'Korea Plus logo',

@@ -177,10 +177,12 @@ export function HeroCarousel() {
               <p>{service.descriptor}</p>
             </div>
             <a
-              href="#services"
+              href={service.url ?? '#services'}
               onClick={(event) => {
                 if (Math.abs(dragDeltaX.current) > 8) event.preventDefault()
               }}
+              rel={service.url ? 'noreferrer' : undefined}
+              target={service.url ? '_blank' : undefined}
             >
               View Details
             </a>
