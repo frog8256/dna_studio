@@ -1,69 +1,30 @@
-export const navItems = ['Home', 'About', 'Services', 'Works', 'Contact']
-
-export const siteDomain = 'dnastudio.me.kr'
-
-export const brandAssets = {
-  dnaWhite: '/brand/dna-studio-white.png',
-  dnaBlack: '/brand/dna-studio-black.png',
+export const bystep = {
+  name: 'Bystep',
+  icon: '/brand/bystep-icon.png',
+  title: '일정과 할 일을 바탕화면에서.',
+  screenshot: '/products/bystep-desktop.webp',
+  detailScreenshot: '/products/bystep-app.webp',
+  screenshotAlt: 'Windows 바탕화면에서 실행 중인 Bystep의 캘린더와 할 일 목록',
 }
 
-export const services = [
-  {
-    name: 'Korea Plus+',
-    descriptor: 'Korea Culture & Life Solution',
-    tone: 'korea',
-    initials: 'KP',
-    preview: 'Culture, life, and local intelligence for people connected to Korea.',
-    url: 'https://koreaplus.me.kr/',
-    logo: {
-      src: '/brand/korea-plus-stacked.svg',
-      alt: 'Korea Plus logo',
-      variant: 'koreaStacked',
-    },
-  },
-  {
-    name: 'My Universe',
-    descriptor: 'AI Self-Exploration Platform',
-    tone: 'universe',
-    initials: 'MU',
-    preview: 'Identity map, reflective prompts, and AI-guided self discovery.',
-    logo: {
-      src: '/brand/my-universe-symbol-no-text.png',
-      alt: 'My Universe logo',
-      variant: 'symbol',
-    },
-  },
-  {
-    name: 'QuoteWise',
-    descriptor: 'AI-Powered Quotation Analysis',
-    tone: 'quote',
-    initials: 'QW',
-    preview: 'Structured quote comparison and decision support powered by AI.',
-    logo: {
-      src: '/brand/quotewise-logo-stacked-dark.png',
-      alt: 'QuoteWise logo',
-      variant: 'stacked',
-    },
-  },
-]
+export const koreaPlus = {
+  name: 'Korea Plus+',
+  icon: '/brand/korea-plus-icon.svg',
+  url: 'https://koreaplus.me.kr/',
+}
 
-export const framework = [
-  {
-    letter: 'D',
-    action: 'Discover',
-    secondary: 'Essence',
-    copy: '아이디어의 본질을 발견하고 핵심 가치를 정의합니다.',
-  },
-  {
-    letter: 'N',
-    action: 'Navigate',
-    secondary: 'Intelligence',
-    copy: 'AI와 데이터를 활용해 가장 적합한 방향을 찾습니다.',
-  },
-  {
-    letter: 'A',
-    action: 'Actualize',
-    secondary: 'Reality',
-    copy: '기술과 실행력으로 현실의 제품으로 구현합니다.',
-  },
-]
+const releasesUrl = 'https://github.com/frog8256/Aven-Downloads/releases'
+const tag = 'v0.7.2-beta-r10'
+
+export const bystepRelease = {
+  version: '0.7.2 Beta r10',
+  date: '2026-11-16',
+  dateLabel: '2026년 11월 16일',
+  download: `${releasesUrl}/download/${tag}/Bystep-Windows-x64.zip`,
+  notes: [
+    'Windows 앱에서 이메일 가입 인증번호를 입력하고 비밀번호를 재설정할 수 있습니다.',
+    '앱을 다시 실행해도 인증 대기 상태와 재발송 제한이 유지됩니다.',
+  ],
+  url: `${releasesUrl}/tag/${tag}`,
+  allReleasesUrl: releasesUrl,
+}
