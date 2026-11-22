@@ -1,4 +1,5 @@
 import { useLayoutEffect, useState } from 'react'
+import { base, asset } from '../data/paths'
 
 function getHomeSection() {
   return window.location.hash === '#korea-plus' ? 'korea-plus' : 'about'
@@ -22,17 +23,17 @@ export function Header({ isBystep }: { isBystep: boolean }) {
   return (
     <header className="site-header">
       <div className="container header-content">
-        <a className="site-logo" href="/" aria-label="DNA Studio 홈">
-          <img src="/brand/dna-studio-wordmark.webp" alt="" width="86" height="34" />
+        <a className="site-logo" href={base} aria-label="DNA Studio 홈">
+          <img src={asset('/brand/dna-studio-wordmark.webp')} alt="" width="86" height="34" />
         </a>
         <nav className="nav-pill" aria-label="주 메뉴">
-          <a href="/#about" aria-current={!isBystep && section === 'about' ? 'location' : undefined}>
+          <a href={`${base}#about`} aria-current={!isBystep && section === 'about' ? 'location' : undefined}>
             About us
           </a>
-          <a href="/#korea-plus" aria-current={!isBystep && section === 'korea-plus' ? 'location' : undefined}>
+          <a href={`${base}#korea-plus`} aria-current={!isBystep && section === 'korea-plus' ? 'location' : undefined}>
             Korea Plus+
           </a>
-          <a href="/bystep" aria-current={isBystep ? 'page' : undefined}>Bystep</a>
+          <a href={`${base}bystep`} aria-current={isBystep ? 'page' : undefined}>Bystep</a>
         </nav>
       </div>
     </header>

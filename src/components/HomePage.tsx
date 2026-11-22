@@ -1,4 +1,5 @@
 import { bystep, koreaPlus } from '../data/brand'
+import { asset, base } from '../data/paths'
 
 export function HomePage() {
   return (
@@ -17,7 +18,7 @@ export function HomePage() {
             </div>
             <h2 id="bystep-title">{bystep.title}</h2>
             <p>일정 확인과 할 일 관리를 더 가깝고, 더 간편하게.</p>
-            <a className="primary-button" href="/bystep">
+            <a className="primary-button" href={`${base}bystep`}>
               <span className="download-icon" aria-hidden="true">↓</span> Bystep 다운로드
             </a>
           </div>
@@ -48,7 +49,7 @@ export function HomePage() {
           </div>
           <img
             className="product-preview"
-            src="/products/korea-plus.webp"
+            src={asset('/products/korea-plus.webp')}
             alt="Korea Plus+ 웹서비스 홈 화면"
             width="1280"
             height="750"

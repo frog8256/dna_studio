@@ -1,15 +1,17 @@
+import { asset } from './paths'
+
 export const bystep = {
   name: 'Bystep',
-  icon: '/brand/bystep-icon.png',
+  icon: asset('/brand/bystep-icon.png'),
   title: '일정과 할 일을 바탕화면에서.',
-  screenshot: '/products/bystep-desktop.webp',
-  detailScreenshot: '/products/bystep-app.webp',
+  screenshot: asset('/products/bystep-desktop.webp'),
+  detailScreenshot: asset('/products/bystep-app.webp'),
   screenshotAlt: 'Windows 바탕화면에서 실행 중인 Bystep의 캘린더와 할 일 목록',
 }
 
 export const koreaPlus = {
   name: 'Korea Plus+',
-  icon: '/brand/korea-plus-icon.svg',
+  icon: asset('/brand/korea-plus-icon.svg'),
   url: 'https://koreaplus.me.kr/',
 }
 
