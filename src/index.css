@@ -252,6 +252,14 @@ img {
   box-shadow: 0 8px 20px #1b294512, 0 2px 5px #1b294507;
 }
 
+.plan-to-preview {
+  padding: clamp(10px, 1.7vw, 24px);
+  background:
+    radial-gradient(ellipse at 8% 120%, #263c75 0%, #405d94 40%, transparent 41%),
+    radial-gradient(ellipse at 95% -35%, #315582 32%, #508aab 61%, transparent 62%),
+    linear-gradient(125deg, #213959, #476d94 55%, #2f516c);
+}
+
 .plan-to-page {
   max-width: 980px;
   padding-block: clamp(38px, 5vw, 64px) clamp(42px, 6vw, 76px);

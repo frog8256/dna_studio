@@ -1,5 +1,6 @@
 import { planTo, koreaPlus } from '../data/brand'
 import { asset, base } from '../data/paths'
+import { PlanToPreview } from './PlanToPreview'
 
 export function HomePage() {
   return (
@@ -22,15 +23,7 @@ export function HomePage() {
               <span className="download-icon" aria-hidden="true">↓</span> Plan to 다운로드
             </a>
           </div>
-          <img
-            className="product-preview"
-            src={planTo.screenshot}
-            alt={planTo.screenshotAlt}
-            width="1280"
-            height="750"
-            fetchPriority="high"
-            decoding="async"
-          />
+          <PlanToPreview />
         </div>
       </section>
 

@@ -1,4 +1,5 @@
 import { planTo, planToRelease } from '../data/brand'
+import { PlanToPreview } from './PlanToPreview'
 
 export function PlanToPage() {
   return (
@@ -17,15 +18,7 @@ export function PlanToPage() {
         <p className="download-meta">{planToRelease.version} · Windows x64 · ZIP</p>
       </section>
 
-      <img
-        className="product-preview download-preview"
-        src={planTo.detailScreenshot}
-        alt="Plan to 프로그램의 월간 캘린더와 할 일 목록"
-        width="1280"
-        height="750"
-        fetchPriority="high"
-        decoding="async"
-      />
+      <PlanToPreview detail />
 
       <section className="download-section" aria-labelledby="install-title">
         <h2 id="install-title">설치 및 실행 방법</h2>

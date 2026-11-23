@@ -4,9 +4,6 @@ export const planTo = {
   name: 'Plan to',
   icon: asset('/brand/plan-to-icon.png'),
   title: '일정과 할 일을 바탕화면에서.',
-  screenshot: asset('/products/plan-to-desktop.webp'),
-  detailScreenshot: asset('/products/plan-to-app.webp'),
-  screenshotAlt: 'Windows 바탕화면에서 실행 중인 Plan to의 캘린더와 할 일 목록',
 }
 
 export const koreaPlus = {
