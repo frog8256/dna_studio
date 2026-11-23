@@ -15,7 +15,7 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  BASE_PATH: /dna_studio/
+  BASE_PATH: /
 
 jobs:
   build:
