@@ -1,7 +1,11 @@
 {
   "trailingSlash": false,
+  "redirects": [
+    { "source": "/bystep", "destination": "/plan-to", "permanent": true },
+    { "source": "/bystep.html", "destination": "/plan-to", "permanent": true }
+  ],
   "rewrites": [
     { "source": "/", "destination": "/index.html" },
-    { "source": "/bystep", "destination": "/bystep.html" }
+    { "source": "/plan-to", "destination": "/plan-to/index.html" }
   ]
 }

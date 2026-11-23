@@ -11,7 +11,7 @@ export default defineConfig({
   appType: 'mpa',
   build: {
     rolldownOptions: {
-      input: ['index.html', 'bystep.html'],
+      input: ['index.html', 'plan-to/index.html', 'bystep.html'],
     },
   },
 })

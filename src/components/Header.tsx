@@ -1,5 +1,5 @@
 import { useLayoutEffect, useState } from 'react'
-import { base, asset } from '../data/paths'
+import { base, asset, planToPath } from '../data/paths'
 
 function getHomeSection() {
   return window.location.hash === '#korea-plus' ? 'korea-plus' : 'about'
@@ -30,7 +30,7 @@ export function Header({ isPlanTo }: { isPlanTo: boolean }) {
           <a href={`${base}#about`} aria-current={!isPlanTo && section === 'about' ? 'location' : undefined}>
             About us
           </a>
-          <a href={`${base}bystep`} aria-current={isPlanTo ? 'page' : undefined}>Plan to</a>
+          <a href={planToPath} aria-current={isPlanTo ? 'page' : undefined}>Plan to</a>
           <a href={`${base}#korea-plus`} aria-current={!isPlanTo && section === 'korea-plus' ? 'location' : undefined}>
             Korea Plus+
           </a>
