@@ -252,7 +252,7 @@ img {
   box-shadow: 0 8px 20px #1b294512, 0 2px 5px #1b294507;
 }
 
-.bystep-page {
+.plan-to-page {
   max-width: 980px;
   padding-block: clamp(38px, 5vw, 64px) clamp(42px, 6vw, 76px);
 }

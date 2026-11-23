@@ -1,26 +1,26 @@
-import { bystep, bystepRelease } from '../data/brand'
+import { planTo, planToRelease } from '../data/brand'
 
-export function BystepPage() {
+export function PlanToPage() {
   return (
-    <div className="container bystep-page">
+    <div className="container plan-to-page">
       <section className="download-intro" aria-labelledby="download-title">
         <div className="product-brand">
-          <img src={bystep.icon} alt="" width="42" height="42" />
-          <span>{bystep.name}</span>
+          <img src={planTo.icon} alt="" width="42" height="42" />
+          <span>{planTo.name}</span>
         </div>
-        <h1 id="download-title">{bystep.title}</h1>
+        <h1 id="download-title">{planTo.title}</h1>
         <p>캘린더와 할 일을 한눈에 확인하고, 더 간편하게 관리하세요.</p>
-        <a className="primary-button download-button" href={bystepRelease.download}>
+        <a className="primary-button download-button" href={planToRelease.download}>
           <span className="windows-icon" aria-hidden="true"><i /><i /><i /><i /></span>
           Windows용 다운로드
         </a>
-        <p className="download-meta">{bystepRelease.version} · Windows x64 · ZIP</p>
+        <p className="download-meta">{planToRelease.version} · Windows x64 · ZIP</p>
       </section>
 
       <img
         className="product-preview download-preview"
-        src={bystep.detailScreenshot}
-        alt="Bystep 프로그램의 월간 캘린더와 할 일 목록"
+        src={planTo.detailScreenshot}
+        alt="Plan to 프로그램의 월간 캘린더와 할 일 목록"
         width="1280"
         height="750"
         fetchPriority="high"
@@ -40,7 +40,7 @@ export function BystepPage() {
           </li>
           <li>
             <h3>실행</h3>
-            <p>압축을 푼 폴더에서 <code>Aven.exe</code>를 실행해요.</p>
+            <p>압축을 푼 폴더에서 <code>Plan to.exe</code>를 실행해요.</p>
           </li>
         </ol>
       </section>
@@ -48,17 +48,17 @@ export function BystepPage() {
       <section className="download-section" aria-labelledby="release-title">
         <div className="section-heading">
           <h2 id="release-title">릴리스 노트</h2>
-          <a href={bystepRelease.allReleasesUrl}>
+          <a href={planToRelease.allReleasesUrl}>
             전체 릴리스 보기 <span aria-hidden="true">↗</span>
           </a>
         </div>
         <div className="release-entry">
           <div className="release-meta">
-            <a href={bystepRelease.url}>{bystepRelease.version}</a>
-            <time dateTime={bystepRelease.date}>{bystepRelease.dateLabel}</time>
+            <a href={planToRelease.url}>{planToRelease.version}</a>
+            <time dateTime={planToRelease.date}>{planToRelease.dateLabel}</time>
           </div>
           <ul>
-            {bystepRelease.notes.map((note) => <li key={note}>{note}</li>)}
+            {planToRelease.notes.map((note) => <li key={note}>{note}</li>)}
           </ul>
         </div>
       </section>

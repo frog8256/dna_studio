@@ -1,4 +1,4 @@
-import { bystep, koreaPlus } from '../data/brand'
+import { planTo, koreaPlus } from '../data/brand'
 import { asset, base } from '../data/paths'
 
 export function HomePage() {
@@ -9,23 +9,23 @@ export function HomePage() {
         <p>일상에 필요한 서비스를 만드는 소프트웨어 브랜드, DNA Studio입니다.</p>
       </section>
 
-      <section className="product-section" aria-labelledby="bystep-title">
+      <section className="product-section" aria-labelledby="plan-to-title">
         <div className="container product-layout">
           <div className="product-copy">
             <div className="product-brand">
-              <img src={bystep.icon} alt="" width="34" height="34" />
-              <span>{bystep.name}</span>
+              <img src={planTo.icon} alt="" width="34" height="34" />
+              <span>{planTo.name}</span>
             </div>
-            <h2 id="bystep-title">{bystep.title}</h2>
+            <h2 id="plan-to-title">{planTo.title}</h2>
             <p>일정 확인과 할 일 관리를 더 가깝고, 더 간편하게.</p>
             <a className="primary-button" href={`${base}bystep`}>
-              <span className="download-icon" aria-hidden="true">↓</span> Bystep 다운로드
+              <span className="download-icon" aria-hidden="true">↓</span> Plan to 다운로드
             </a>
           </div>
           <img
             className="product-preview"
-            src={bystep.screenshot}
-            alt={bystep.screenshotAlt}
+            src={planTo.screenshot}
+            alt={planTo.screenshotAlt}
             width="1280"
             height="750"
             fetchPriority="high"

@@ -5,6 +5,6 @@ import App from './App.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <App isBystep={document.body.dataset.page === 'bystep'} />
+    <App isPlanTo={document.body.dataset.page === 'plan-to'} />
   </StrictMode>,
 )
