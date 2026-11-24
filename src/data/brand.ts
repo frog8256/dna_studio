@@ -13,16 +13,16 @@ export const koreaPlus = {
 }
 
 const releasesUrl = 'https://github.com/frog8256/Bystep-Downloads/releases'
-const tag = 'v0.8.3-beta'
+const tag = 'v0.8.4-beta'
 
 export const planToRelease = {
-  version: '0.8.3 Beta',
+  version: '0.8.4 Beta',
   date: '2026-11-25',
   dateLabel: '2026년 11월 25일',
   download: `${releasesUrl}/download/${tag}/Plan-to-Windows-x64.zip`,
   notes: [
-    'Windows 상단바와 채팅창에 배경 없이 손글씨 로고만 표시합니다.',
-    '밝은 화면에는 딥그린, 어두운 화면에는 밝은 글씨로 표시합니다.',
+    '상단바와 채팅창의 손글씨 로고에 배경 불투명도와 블러 강도가 함께 적용됩니다.',
+    '블러를 끄거나 종이 테마로 전환하면 글자가 선명하게 표시됩니다.',
   ],
   url: `${releasesUrl}/tag/${tag}`,
   allReleasesUrl: releasesUrl,
