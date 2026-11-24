@@ -204,6 +204,11 @@ img {
   object-fit: contain;
 }
 
+.plan-to-wordmark {
+  width: 124px;
+  height: auto;
+}
+
 .product-copy h2 {
   max-width: 13.2em;
   margin-top: 13px;
@@ -269,8 +274,9 @@ img {
   text-align: center;
 }
 
-.download-intro .product-brand {
-  font-size: 25px;
+.download-intro .plan-to-wordmark {
+  width: 152px;
+  margin-inline: auto;
 }
 
 .download-intro h1 {

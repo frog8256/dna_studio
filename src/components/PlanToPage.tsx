@@ -5,10 +5,7 @@ export function PlanToPage() {
   return (
     <div className="container plan-to-page">
       <section className="download-intro" aria-labelledby="download-title">
-        <div className="product-brand">
-          <img src={planTo.icon} alt="" width="42" height="42" />
-          <span>{planTo.name}</span>
-        </div>
+        <img className="plan-to-wordmark" src={planTo.wordmark} alt={planTo.name} width="840" height="270" />
         <h1 id="download-title">{planTo.title}</h1>
         <p>캘린더와 할 일을 한눈에 확인하고, 더 간편하게 관리하세요.</p>
         <a className="primary-button download-button" href={planToRelease.download}>

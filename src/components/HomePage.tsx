@@ -13,10 +13,7 @@ export function HomePage() {
       <section className="product-section" aria-labelledby="plan-to-title">
         <div className="container product-layout">
           <div className="product-copy">
-            <div className="product-brand">
-              <img src={planTo.icon} alt="" width="34" height="34" />
-              <span>{planTo.name}</span>
-            </div>
+            <img className="plan-to-wordmark" src={planTo.wordmark} alt={planTo.name} width="840" height="270" />
             <h2 id="plan-to-title">{planTo.title}</h2>
             <p>일정 확인과 할 일 관리를 더 가깝고, 더 간편하게.</p>
             <a className="primary-button" href={planToPath}>
