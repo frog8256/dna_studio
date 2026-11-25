@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState, type CSSProperties } from 'react'
 import { planTo } from '../data/brand'
-import { asset } from '../data/paths'
 import { phoneAgendaReady, phoneEntrance, scenePhase as ease, storyScenes as scenes } from '../data/story'
 import { useLanguage } from '../i18n'
 import { StoryCalendar } from './StoryCalendar'
@@ -39,7 +38,7 @@ function Laptop({ progress }: { progress: number }) {
             <div className="story-os-dock">
               <i className="story-start"><b /><b /><b /><b /></i>
               <i className="story-folder-icon" /><i className="story-web-icon" />
-              <img src={asset('/brand/plan-to-app-icon.webp')} alt="" /><i className="story-mail-icon" />
+              <img src={planTo.icon} alt="" /><i className="story-mail-icon" />
             </div>
             <StoryCalendar progress={progress} />
             <StoryWindows progress={progress} />

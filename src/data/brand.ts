@@ -2,6 +2,7 @@ import { asset } from './paths'
 
 export const planTo = {
   name: 'Plan to',
+  icon: asset('/brand/plan-to-app-icon.webp?v=3cb58cc3'),
   wordmark: asset('/brand/plan-to-wordmark.png'),
   title: '일정과 할 일을 바탕화면에서.',
 }
