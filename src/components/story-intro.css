@@ -1,5 +1,4 @@
 .story-intro {
-  --intro-rise: clamp(28px, 6svh, 64px);
   position: absolute;
   z-index: 2;
   inset: 0;
@@ -15,10 +14,12 @@
 }
 
 .intro-lockup {
+  --intro-rise: 19cqw;
+  container-type: inline-size;
   position: absolute;
   left: 50%;
   top: 50%;
-  width: min(76%, 37rem, 100svh);
+  width: min(76%, 37rem, calc(100svh - var(--header-height)));
   aspect-ratio: 840 / 270;
   transform: translate(-50%, -50%);
 }
@@ -33,16 +34,16 @@
 
 .intro-motto {
   position: absolute;
-  top: calc(100% + clamp(10px, 1.8svh, 20px));
+  top: calc(100% - var(--intro-rise) + clamp(10px, 3cqw, 20px));
   left: 50%;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: var(--bracket-width);
+  width: calc(80% * var(--bracket-open));
   height: 1.14em;
-  transform: translate(-50%, calc(-1 * var(--intro-rise) * var(--line-lift)));
+  transform: translateX(-50%);
   opacity: var(--line-alpha);
-  font: italic 400 clamp(29px, min(6.5vw, 8svh), 59px) / 1 Georgia, "Times New Roman", serif;
+  font: italic 400 20cqw / 1 Georgia, "Times New Roman", serif;
   color: #23493a;
 }
 .intro-motto__bracket {
@@ -50,19 +51,19 @@
   width: .19em;
   height: .98em;
   border-block: .045em solid currentColor;
-  border-inline-start: .045em solid currentColor;
 }
-.intro-motto__bracket:last-child { transform: rotate(180deg); }
+.intro-motto__bracket:first-child { border-left: .045em solid currentColor; }
+.intro-motto__bracket:last-child { border-right: .045em solid currentColor; }
 .intro-motto__text {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
   clip-path: inset(-15% var(--phrase-inset));
   opacity: var(--phrase-alpha);
+  padding-inline: .04em;
   letter-spacing: -.05em;
   white-space: nowrap;
 }
-.intro-motto__bang { display: inline-block; width: var(--bang-width); opacity: var(--bang-alpha); }
 
 .intro-controls {
   position: absolute;

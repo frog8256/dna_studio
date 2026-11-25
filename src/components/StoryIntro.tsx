@@ -78,10 +78,9 @@ export function StoryIntro({ progress, reducedMotion, destination, stage, onSkip
   const p = reducedMotion ? .80 : progress
   const written = scenePhase(p, 0, .35)
   const lift = scenePhase(p, .35, .46)
-  const brackets = scenePhase(p, .39, .47)
-  const spread = scenePhase(p, .50, .65)
-  const phrase = scenePhase(p, .535, .65)
-  const settle = scenePhase(p, .70, .755)
+  const brackets = scenePhase(p, .48, .525)
+  const spread = scenePhase(p, .535, .66)
+  const phrase = scenePhase(p, .555, .66)
   const exit = scenePhase(p, .835, .925)
   const dock = scenePhase(p, .835, 1)
   const style = {
@@ -90,13 +89,10 @@ export function StoryIntro({ progress, reducedMotion, destination, stage, onSkip
     '--ink-y': `${landing.y * dock}px`,
     '--ink-scale': 1 + (landing.scale - 1) * dock,
     '--ink-lift': lift * (1 - dock),
-    '--line-lift': lift,
     '--line-alpha': brackets * (1 - exit),
-    '--bracket-width': `${.90 + 3.35 * spread - .25 * settle}em`,
+    '--bracket-open': .2 + .8 * spread,
     '--phrase-inset': `${50 * (1 - phrase)}%`,
     '--phrase-alpha': phrase,
-    '--bang-width': `${.34 * (1 - settle)}em`,
-    '--bang-alpha': 1 - settle,
     '--cue-alpha': 1 - scenePhase(p, .81, .86),
   } as CSSProperties
 
@@ -104,10 +100,10 @@ export function StoryIntro({ progress, reducedMotion, destination, stage, onSkip
     <div className="story-intro" style={style}>
       <div className="story-intro__paper" aria-hidden="true" />
       <div className="intro-lockup" ref={origin}>
-        <h1 className="intro-title" aria-label="Plan to. Make it." lang="en"><Signature written={written} /></h1>
+        <h1 className="intro-title" aria-label="Plan to. Make it!" lang="en"><Signature written={written} /></h1>
         <div className="intro-motto" aria-hidden="true" lang="en">
           <span className="intro-motto__bracket" />
-          <span className="intro-motto__text">Make it<span className="intro-motto__bang">!</span></span>
+          <span className="intro-motto__text">Make it!</span>
           <span className="intro-motto__bracket" />
         </div>
       </div>
