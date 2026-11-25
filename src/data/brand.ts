@@ -13,10 +13,10 @@ export const koreaPlus = {
 }
 
 const releasesUrl = 'https://github.com/frog8256/Bystep-Downloads/releases'
-const tag = 'v0.8.5-beta'
+const tag = 'v0.8.2-beta-r1'
 
 export const planToRelease = {
-  version: '0.8.5 Beta',
+  version: '0.8.2 (BETA)',
   date: '2026-11-25',
   dateLabel: '2026년 11월 25일',
   download: `${releasesUrl}/download/${tag}/Plan-to-Windows-x64.zip`,
