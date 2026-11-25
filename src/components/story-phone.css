@@ -120,3 +120,14 @@
 .story-phone__nav-calendar::after { content: ''; position: absolute; top: 25%; inset-inline: 0; border-top: 1px solid currentColor; }
 .story-phone__nav-chat { border: 1px solid currentColor; border-radius: 50% 50% 50% 1px; }
 .story-phone__nav-more { font: 800 5cqw/.65 sans-serif; }
+
+@container phone-display (max-width: 155px) {
+  .story-phone__agenda-heading strong { font-size: 8.25cqw; }
+  .story-phone__agenda-heading > span, .story-phone__event > span { font-size: 4.75cqw; }
+  .story-phone__date { font-size: 5.15cqw; }
+  .story-phone__event b { min-width: 0; font-size: 5.25cqw; white-space: normal; }
+  .story-phone__event > span { flex-shrink: 0; }
+  .story-phone__synced { font-size: 4.35cqw; white-space: normal; }
+  .story-phone__synced i { flex-shrink: 0; }
+  .story-phone__app-nav > span { font-size: 3.85cqw; }
+}

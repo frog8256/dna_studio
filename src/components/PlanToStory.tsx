@@ -1,23 +1,12 @@
 import { useEffect, useRef, useState, type CSSProperties } from 'react'
 import { planTo } from '../data/brand'
 import { asset } from '../data/paths'
-import { phoneAgendaReady, phoneEntrance, scenePhase as ease } from '../data/story'
+import { phoneAgendaReady, phoneEntrance, scenePhase as ease, storyScenes as scenes } from '../data/story'
+import { useLanguage } from '../i18n'
 import { StoryCalendar } from './StoryCalendar'
 import { StoryWindows, StoryStickers } from './StoryWindows'
 import { StoryPhone } from './StoryPhone'
 import './plan-to-story.css'
-
-const scenes = [
-  { start: 0, rest: 0, name: '바탕화면', title: '바탕화면 한가운데, Plan to.', copy: '풍경이 비치는 달력에서 하루를 시작해요. 아래로 스크롤해 보세요.' },
-  { start: .90, rest: 2.17, name: '열리는 창', title: '일을 시작하면 창이 하나둘 쌓여요.', copy: '폴더, 웹브라우저, 메신저, 메일을 열자 달력이 뒤로 가려집니다.' },
-  { start: 2.25, rest: 2.84, name: '단축키', title: '단축키 한 번으로 달력을 앞으로.', copy: 'Ctrl + Alt + ↑를 누르면 열어 둔 창 위로 Plan to가 올라옵니다.' },
-  { start: 3.18, rest: 4.34, name: '날짜 선택', title: '이웃한 두 날짜를 더블클릭.', copy: '25일과 26일을 차례로 두 번 클릭해 날짜별 메모를 엽니다.' },
-  { start: 4.38, rest: 5.23, name: '스티커', title: '두 장의 메모를 바탕화면에.', copy: '달력 밖으로 끌어 위아래로 고정해 두면, 회의 전에 챙길 일이 눈에 들어와요.' },
-  { start: 5.37, rest: 5.98, name: '창 정리', title: '작업 창을 닫아도 메모는 그대로.', copy: '폴더부터 메일까지 네 개의 창을 닫으면 달력과 두 스티커가 남습니다.' },
-  { start: 6.02, rest: 7.02, name: 'AI 일정 등록', title: '이번 주 일정 세 개를 한 번에.', copy: 'Plan to AI 채팅에 부탁하면 기획 회의, 시안 검토, 주간 회고가 달력에 차례로 들어갑니다.' },
-  { start: 7.14, rest: 7.88, name: '동기화', title: '채팅에서 등록과 동기화를 확인해요.', copy: '연결한 Google 캘린더와의 동기화가 끝나면 일정 등록 완료 메시지가 나타납니다.' },
-  { start: phoneAgendaReady, rest: 10, name: '휴대폰', title: '휴대폰에도 같은 세 일정이.', copy: '같은 계정으로 모바일 Plan to를 열면 PC에서 등록한 일정과 시간이 그대로 보입니다.' },
-] as const
 
 const clamp = (value: number) => Math.max(0, Math.min(1, value))
 
@@ -67,6 +56,7 @@ function Laptop({ progress }: { progress: number }) {
 }
 
 export function PlanToStory() {
+  const { language, t } = useLanguage()
   const track = useRef<HTMLElement>(null)
   const pin = useRef<HTMLDivElement>(null)
   const captionTitle = useRef<HTMLHeadingElement>(null)
@@ -118,12 +108,12 @@ export function PlanToStory() {
   const visualProgress = reducedMotion ? scene.rest : progress
   const enteringPhone = visualProgress >= phoneEntrance && visualProgress < phoneAgendaReady
   return (
-    <section className="story-track" ref={track} aria-label="Plan to 사용 흐름">
+    <section className="story-track" ref={track} aria-label={t('Plan to 사용 흐름', 'Plan to walkthrough', 'Plan to の使い方')}>
       <div className="story-pin" ref={pin}>
         <div className="story-shell">
           <div className="story-top">
-            <div className="story-brand"><img src={planTo.wordmark} alt="Plan to" /><span>데스크톱 캘린더</span></div>
-            <nav aria-label="소개 건너뛰기"><a href="#features">기능 보기</a><a className="story-install" href="#download">다운로드</a></nav>
+            <div className="story-brand"><img src={planTo.wordmark} alt="Plan to" /><span>{t('데스크톱 캘린더', 'Desktop calendar', 'デスクトップカレンダー')}</span></div>
+            <nav aria-label={t('소개 건너뛰기', 'Skip the walkthrough', '紹介をスキップ')}><a href="#features">{t('기능 보기', 'Features', '機能を見る')}</a><a className="story-install" href="#download">{t('다운로드', 'Download', 'ダウンロード')}</a></nav>
           </div>
           <div className="story-stage">
             <Laptop progress={visualProgress} />
@@ -136,22 +126,22 @@ export function PlanToStory() {
             <div className="story-caption" aria-live="polite" aria-atomic="true">
               <span className="story-number">{String(active + 1).padStart(2, '0')} <span>/ {String(scenes.length).padStart(2, '0')}</span></span>
               <div>
-                <h1 ref={captionTitle} tabIndex={-1}>{enteringPhone ? '휴대폰에서 Plan to를 열어요.' : scene.title}</h1>
-                <p>{enteringPhone ? '스크롤을 내리거나 Plan to 아이콘을 눌러 PC에서 등록한 일정을 확인하세요.' : scene.copy}</p>
+                <h1 ref={captionTitle} tabIndex={-1}>{enteringPhone ? t('휴대폰에서 Plan to를 열어요.', 'Open Plan to on your phone.', 'スマホで Plan to を開きましょう。') : scene[language].title}</h1>
+                <p>{enteringPhone ? t('스크롤을 내리거나 Plan to 아이콘을 눌러 PC에서 등록한 일정을 확인하세요.', 'Scroll down or tap the Plan to icon to see the events you added on your PC.', '下にスクロールするか、Plan to のアイコンをタップして、PCで登録した予定を確認しましょう。') : scene[language].copy}</p>
               </div>
             </div>
             <div className="story-bar">
-              <nav className="story-segments" aria-label="장면 바로가기">
+              <nav className="story-segments" aria-label={t('장면 바로가기', 'Jump to a scene', 'シーンを選択')}>
                 {scenes.map((item, index) => (
-                  <button key={item.name} type="button" title={item.name} aria-label={`${index + 1}번째 장면 · ${item.name}`} aria-current={index === active ? 'step' : undefined}
+                  <button key={item.start} type="button" title={item[language].name} aria-label={t(`${index + 1}번째 장면 · ${item.ko.name}`, `Scene ${index + 1} · ${item.en.name}`, `シーン${index + 1}・${item.ja.name}`)} aria-current={index === active ? 'step' : undefined}
                     className={index <= active ? 'story-visited' : ''} onClick={() => goToScene(index)}><span /></button>
                 ))}
               </nav>
               <div className="story-controls">
-                <button type="button" aria-label="이전 장면" disabled={active === 0} onClick={() => goToScene(active - 1)}>‹</button>
+                <button type="button" aria-label={t('이전 장면', 'Previous scene', '前のシーン')} disabled={active === 0} onClick={() => goToScene(active - 1)}>‹</button>
                 {active + 1 < scenes.length
-                  ? <button type="button" aria-label="다음 장면" onClick={() => goToScene(active + 1)}>›</button>
-                  : <a className="story-end" href="#features">기능 보기</a>}
+                  ? <button type="button" aria-label={t('다음 장면', 'Next scene', '次のシーン')} onClick={() => goToScene(active + 1)}>›</button>
+                  : <a className="story-end" href="#features">{t('기능 보기', 'Features', '機能を見る')}</a>}
               </div>
             </div>
           </div>

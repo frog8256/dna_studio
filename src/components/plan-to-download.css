@@ -173,6 +173,10 @@
   word-break: keep-all;
 }
 
+.pt-download:lang(ja) :is(.pt-download__setup li, .pt-download__release-body ul) {
+  word-break: normal;
+}
+
 @media (max-width: 760px) {
   .pt-download__panel,
   .pt-download__release-body {

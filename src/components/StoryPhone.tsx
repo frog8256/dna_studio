@@ -2,13 +2,15 @@ import type { CSSProperties } from 'react'
 import { planTo } from '../data/brand'
 import mobileLauncher from '../assets/plan-to-mobile-launcher.webp'
 import { phoneAgendaReady, phoneEntrance, scenePhase as phase, storyAppointments } from '../data/story'
+import { useLanguage } from '../i18n'
 import './story-phone.css'
 
 function PhoneHome({ canOpen, onOpen }: { canOpen: boolean; onOpen: () => void }) {
+  const { t } = useLanguage()
   return (
     <div className="story-phone__home">
-      <div className="story-phone__clock" aria-hidden="true"><span>11월 25일 수요일</span><strong>09:41</strong></div>
-      <button type="button" className="story-phone__launch-icon" aria-label="모바일 Plan to 일정 열기"
+      <div className="story-phone__clock" aria-hidden="true"><span>{t('11월 25일 수요일', 'Wednesday, November 25', '11月25日 水曜日')}</span><strong>09:41</strong></div>
+      <button type="button" className="story-phone__launch-icon" aria-label={t('모바일 Plan to 일정 열기', 'Open your schedule in Plan to for mobile', 'モバイル版 Plan to で予定を開く')}
         onClick={onOpen} disabled={!canOpen}>
         <img src={mobileLauncher} alt="" draggable={false} />
         <span>Plan to</span>
@@ -24,26 +26,27 @@ function PhoneHome({ canOpen, onOpen }: { canOpen: boolean; onOpen: () => void }
 }
 
 function PhoneAgenda({ ready }: { ready: boolean }) {
+  const { language, t } = useLanguage()
   return (
     <div className="story-phone__app" aria-hidden={!ready}>
       <div className="story-phone__app-header">
         <img src={planTo.wordmark} alt="" draggable={false} />
       </div>
       <div className="story-phone__agenda">
-        <div className="story-phone__agenda-heading"><strong>내 일정</strong><span>11월</span></div>
+        <div className="story-phone__agenda-heading"><strong>{t('내 일정', 'My schedule', '自分の予定')}</strong><span>{t('11월', 'November', '11月')}</span></div>
         {storyAppointments.map(item => (
           <div className="story-phone__day" key={item.day}>
-            <div className="story-phone__date">11월 {item.day}일 <span>({item.weekday})</span></div>
-            <div className="story-phone__event"><i /><b>{item.title}</b><span>{item.time}</span></div>
+            <div className="story-phone__date">{t(`11월 ${item.day}일`, `Nov ${item.day}`, `11月${item.day}日`)} <span>({item.weekday[language]})</span></div>
+            <div className="story-phone__event"><i /><b>{item.title[language]}</b><span>{item.time}</span></div>
           </div>
         ))}
-        <div className="story-phone__synced"><i>✓</i>Google 캘린더 동기화됨</div>
+        <div className="story-phone__synced"><i>✓</i>{t('Google 캘린더 동기화됨', 'Google Calendar synced', 'Google カレンダーと同期済み')}</div>
       </div>
       <div className="story-phone__app-nav">
-        <span><i className="story-phone__nav-home" />홈</span>
-        <span><i className="story-phone__nav-calendar" />캘린더</span>
-        <span><i className="story-phone__nav-chat" />채팅</span>
-        <span><i className="story-phone__nav-more">···</i>더보기</span>
+        <span><i className="story-phone__nav-home" />{t('홈', 'Home', 'ホーム')}</span>
+        <span><i className="story-phone__nav-calendar" />{t('캘린더', 'Calendar', 'カレンダー')}</span>
+        <span><i className="story-phone__nav-chat" />{t('채팅', 'Chat', 'チャット')}</span>
+        <span><i className="story-phone__nav-more">···</i>{t('더보기', 'More', 'その他')}</span>
       </div>
     </div>
   )
