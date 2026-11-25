@@ -1,0 +1,159 @@
+body[data-page="plan-to"] {
+  isolation: isolate;
+  background: #244a46;
+  color: #f1f9f6;
+}
+body[data-page="plan-to"]::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(145deg, rgb(9 35 38 / 74%) 0%, rgb(15 49 50 / 61%) 43%, rgb(9 37 35 / 50%) 72%, rgb(7 24 27 / 68%)),
+    url('../assets/plan-to-hills.webp') 50% 53% / cover no-repeat;
+}
+body[data-page="plan-to"] .site-header {
+  z-index: 5;
+  background: rgb(14 40 40 / 46%);
+  border-bottom-color: rgb(225 255 242 / 20%);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+}
+body[data-page="plan-to"] :is(.site-logo img, .pt-signature img), .story-brand img { filter: brightness(0) invert(1); }
+body[data-page="plan-to"] .nav-pill { background: rgb(13 42 39 / 22%); border-color: #d9fff137; box-shadow: inset 0 1px 0 #ffffff12; }
+body[data-page="plan-to"] .nav-pill a { color: #f6fff8; }
+body[data-page="plan-to"] .nav-pill a:hover { background: #d6fff01a; }
+body[data-page="plan-to"] .nav-pill a[aria-current] { background: #d9fff02f; box-shadow: inset 0 0 0 1px #e1fff336; }
+body[data-page="plan-to"] .site-footer { color: #effff8; background: rgb(6 28 26 / 64%); border-color: #defff530; }
+body[data-page="plan-to"] .site-footer small { color: #dbebe3; }
+body[data-page="plan-to"] :is(a, button):focus-visible { outline: 3px solid #b6ffda; outline-offset: 3px; }
+
+.story-track { position: relative; height: calc(100vh + 680vh - var(--header-height)); height: calc(780svh - var(--header-height)); }
+.story-pin { position: sticky; top: var(--header-height); height: calc(100vh - var(--header-height)); height: calc(100svh - var(--header-height)); }
+.story-shell {
+  height: 100%; width: min(100%, 1640px); margin: auto; display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto; color: #f6fffa;
+  padding-block: clamp(12px, 2.1vh, 24px) clamp(12px, 2.4vh, 24px);
+}
+.story-top, .story-console { width: min(1120px, calc(100% - 2 * var(--gutter))); margin-inline: auto; }
+.story-top, .story-brand, .story-top nav { display: flex; align-items: center; }
+.story-top { justify-content: space-between; gap: 10px; }
+.story-brand { gap: 12px; }
+.story-brand img { width: clamp(72px, 8vw, 100px); height: auto; }
+.story-brand span { border-left: 1px solid #caeddd76; padding-left: 12px; font-size: .875rem; color: #effbf4; }
+.story-top nav { gap: 8px; }
+.story-top a { border-radius: 99px; padding: .5rem .8rem; font-size: .875rem; color: #f2fff8; font-weight: 650; }
+.story-top a:hover { background: #c1f4da23; }
+.story-top .story-install { color: #123c32; background: #dcf9e9; box-shadow: inset 0 0 0 1px #ffffff95; padding-inline: 1.05rem; }
+.story-top .story-install:hover { color: #153f35; background: #f3fff7; }
+.story-stage { position: relative; isolation: isolate; container-type: size; width: 100%; min-height: 0; overflow: clip; }
+.story-laptop {
+  width: min(81cqw, 161cqh, 1040px);
+  position: absolute; top: 50%; transform: translate(-50%, -48%) scale(var(--device-scale));
+  filter: drop-shadow(0 1.8cqh 1.8cqh #05191677);
+}
+.story-lid {
+  position: relative; width: 94%; margin-inline: auto; aspect-ratio: 1.7;
+  border: 1px solid #cee6e280; border-bottom-color: #031313;
+  border-radius: 2% 2% .65% .65% / 3% 3% 1% 1%;
+  background: linear-gradient(165deg,#718384 0%,#142327 7%,#0a1316 50%,#667475 100%);
+  box-shadow: inset 0 0 0 1px #152025;
+}
+.story-camera { position: absolute; top: 1.02%; left: 49.7%; width: .6%; aspect-ratio: 1; border-radius: 50%; background: #294652; box-shadow: inset 0 0 0 1px #121a1c; }
+.story-display { position: absolute; inset: 2.8% .95% 2%; overflow: hidden; border-radius: .9%; background: #294c46; }
+.story-desktop-area { position: absolute; overflow: hidden; container-type: size; background: #7faaa3 url('../assets/plan-to-hills.webp') center / cover; }
+.story-desktop-area > .story-app {
+  position: absolute; left: var(--app-left); top: var(--app-top); width: var(--app-width); height: 76%;
+  transform: scale(var(--app-lift)); z-index: var(--app-layer);
+}
+.story-base {
+  position: relative; width: 100%; height: 1.45cqh; min-height: 5px;
+  border-radius: .65% .65% 2.2% 2.2% / 30% 30% 95% 95%;
+  background: linear-gradient(90deg,#58686c,#c0cecd 4%,#819092 11%,#8f9c9e 48%,#a7b5b5 90%,#bdccca 96%,#49595c);
+  border-top: 1px solid #ebfffbc4; box-shadow: inset 0 -2px 1px #233638a3;
+}
+.story-base i { width: 15%; height: 53%; background: linear-gradient(#515f63,#7a8d90); display: block; margin: 0 auto; border-radius: 0 0 6px 6px; }
+.story-os-dock {
+  display: flex; align-items: center; justify-content: center; gap: 1.35cqw; position: absolute;
+  bottom: 1.1%; left: 50%; transform: translateX(-50%); border: 1px solid #ffffff75;
+  background: rgb(34 58 58 / 47%); border-radius: 1.3cqw; padding: .45cqw 1.5cqw; box-shadow: 0 .2cqw .6cqw #0d292733;
+}
+.story-os-dock > i, .story-os-dock img { display: block; width: 2.5cqw; height: 2.5cqw; border-radius: .45cqw; }
+.story-os-dock .story-start { display: grid; grid-template: 1fr 1fr / 1fr 1fr; gap: .18cqw; padding: .25cqw; }
+.story-start b { background: #b3deff; }
+.story-folder-icon { background: linear-gradient(to bottom,#ffe793 0 28%,#e9b45d 29% 45%,#ffd176 46%); }
+.story-web-icon { background: radial-gradient(circle,#f4fbff 0 28%,#428dd3 31% 43%,transparent 45%),conic-gradient(#e9b95b 0 32%,#5ca377 33% 66%,#d56e60 67%); border-radius: 100% !important; }
+.story-mail-icon { background: linear-gradient(33deg,transparent 50%,#e8fffb 51% 55%,transparent 56%) 0 0/50% 70% no-repeat,linear-gradient(-33deg,transparent 50%,#e8fffb 51% 55%,transparent 56%) 100% 0/50% 70% no-repeat,#5f9fa5; }
+.story-keyboard {
+  position: absolute; z-index: 2; inset-inline: 0; top: 75%; margin: auto; width: max-content;
+  display: flex; align-items: center; gap: .45em; padding: .48em .68em; border: 1px solid #defff496;
+  border-radius: .72em; font-size: clamp(12px, 2cqh, 19px); font-weight: 700; color: white;
+  background: #133c35dd; box-shadow: 0 .4em 1em #071f1e55;
+}
+.story-keyboard kbd { display: inline-grid; place-items: center; min-width: 2.25em; padding: .33em; color: #133a30; border: 1px solid #fff; border-bottom: .18em solid #87ae9a; border-radius: .38em; background: #d6f6e7; transform: translateY(calc(var(--press) * .18em)); box-shadow: 0 0 calc(var(--press) * .7em) #9dffcb; }
+.story-console {
+  border: 1px solid #e2fff063; border-top-color: #edfff899; border-radius: 18px;
+  background: linear-gradient(120deg,#a2d6c31c,transparent 55%),rgb(8 35 32 / 48%);
+  -webkit-backdrop-filter: blur(11px); backdrop-filter: blur(11px);
+  box-shadow: inset 0 1px 0 #ffffff22, 0 10px 30px -18px #021917c4;
+  padding: clamp(12px, 1.9vh, 21px) clamp(18px, 2.4vw, 35px) 5px;
+}
+.story-caption { display: flex; align-items: baseline; gap: clamp(14px, 2vw, 32px); }
+.story-number { flex: none; font-size: .82rem; font-weight: 700; color: #e7fff3; font-variant-numeric: tabular-nums; }
+.story-number span { font-weight: 500; color: #c1d9ce; }
+.story-caption h1 { font-size: clamp(1.55rem, 3vw, 2.8rem); line-height: 1.2; letter-spacing: -.055em; }
+.story-caption p { margin-top: .32rem; color: #e0f3e9; font-size: clamp(.94rem, 1.25vw, 1.08rem); line-height: 1.5; }
+.story-bar, .story-segments, .story-controls { display: flex; align-items: center; gap: .45rem; }
+.story-bar { margin-top: .35rem; justify-content: space-between; gap: 1rem; }
+.story-segments { flex: 1; gap: .34rem; }
+.story-segments button { height: 31px; flex: 1; border: 0; background: transparent; padding: 0; cursor: pointer; }
+.story-segments span { display: block; height: 3px; border-radius: 8px; background: #dbfbed4f; }
+.story-segments .story-visited span { background: #d4f4df; }
+.story-segments [aria-current] span { background: #a3ffd1; box-shadow: 0 0 7px #a2ffce80; }
+.story-controls button, .story-end {
+  display: grid; place-items: center; height: 32px; min-width: 32px; color: #f2fff7;
+  background: #b4ffde18; border: 1px solid #d2f9e34a; border-radius: 50%; cursor: pointer; font-size: 24px; line-height: 1;
+}
+.story-controls button:disabled { opacity: .35; cursor: default; }
+.story-end { padding-inline: .8rem; border-radius: 20px; font-size: .82rem; }
+.story-controls button:hover:not(:disabled), .story-end:hover { background: #dafff332; }
+
+@media (max-width: 700px) {
+  body[data-page="plan-to"] { --header-height: 58px; }
+  body[data-page="plan-to"] .header-content { display: flex; justify-content: space-between; min-height: 57px; gap: 8px; padding: 0; }
+  body[data-page="plan-to"] .site-logo img { width: 61px; }
+  body[data-page="plan-to"] .nav-pill { width: auto; }
+  body[data-page="plan-to"] .nav-pill a { min-height: 33px; padding-inline: 8px; font-size: .75rem; }
+  .story-top { width: calc(100% - 32px); }
+  .story-console { width: calc(100% - 24px); border-radius: 15px; }
+  .story-brand { gap: 7px; }
+  .story-brand span { font-size: .75rem; padding-left: 7px; }
+  .story-top nav { gap: 0; }
+  .story-top a { padding: .5rem; font-size: .8rem; }
+  .story-top .story-install { padding-inline: .75rem; }
+  .story-laptop { width: min(98cqw, 132cqh); }
+  .story-lid { width: 94.8%; aspect-ratio: 1.38; }
+  .story-caption { display: block; }
+  .story-caption h1 { margin-top: .3rem; }
+  .story-caption p { margin-top: .4rem; }
+  .story-shell { padding-block: 10px max(10px,env(safe-area-inset-bottom)); }
+}
+@media (max-height: 520px) and (min-width: 520px) {
+  body[data-page="plan-to"] { --header-height: 44px; }
+  body[data-page="plan-to"] .header-content { min-height: 43px; }
+  body[data-page="plan-to"] .nav-pill a { min-height: 30px; }
+  body[data-page="plan-to"] .site-logo { min-height: 32px; }
+  .story-top { display: none; }
+  .story-shell { grid-template-rows: minmax(0,1fr) auto; padding-block: 3px; }
+  .story-console { padding-block: 6px 0; }
+  .story-caption h1 { font-size: 1.2rem; }
+  .story-caption p { margin-top: 2px; font-size: .8rem; }
+  .story-bar { margin-top: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .story-track { height: calc(455svh - var(--header-height)); }
+}
+@media (prefers-reduced-transparency: reduce) {
+  body[data-page="plan-to"]::before { background: #23453e; }
+  body[data-page="plan-to"] .site-header, .story-console { background: #163a32; backdrop-filter: none; }
+}

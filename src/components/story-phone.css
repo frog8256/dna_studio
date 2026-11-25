@@ -1,0 +1,121 @@
+.story-phone {
+  --phone-inset: clamp(3px, .82cqh, 6px);
+  --phone-radius: clamp(17px, 5.7cqh, 39px);
+  position: absolute;
+  z-index: 3;
+  top: 50%;
+  left: 50%;
+  height: min(94cqh, 139cqw, 610px);
+  aspect-ratio: .495;
+  transform: translate(calc(-50% + var(--phone-x)), -50%) rotate(var(--phone-angle)) scale(var(--phone-tilt-scale));
+  border: 1px solid #5c6566;
+  border-radius: var(--phone-radius);
+  background: linear-gradient(135deg, #d2d3c8 0%, #6d7473 7%, #272b2f 19%, #979d94 40%, #434748 57%, #a1a49a 77%, #222c2e 94%);
+  box-shadow: inset 0 0 0 1px #e8e8d980, 0 0 0 1px #182224, 0 2cqh 5cqh -2cqh #07181680;
+  pointer-events: none;
+  user-select: none;
+}
+
+.story-phone::before, .story-phone::after {
+  position: absolute;
+  content: '';
+  width: max(2px, .45cqh);
+  border-radius: 4px;
+  background: linear-gradient(to right, #323837, #bac0b7, #515a58);
+}
+.story-phone::before { left: -2px; top: 26%; height: 14%; }
+.story-phone::after { right: -2px; top: 31%; height: 9%; }
+.story-phone__display {
+  container: phone-display / size;
+  position: absolute;
+  inset: var(--phone-inset);
+  border-radius: calc(var(--phone-radius) - var(--phone-inset));
+  overflow: hidden;
+  background: #112622;
+  box-shadow: 0 0 0 2px #131a1b;
+  font-family: Pretendard, "Malgun Gothic", system-ui, sans-serif;
+  letter-spacing: -.025em;
+  text-align: left;
+  line-height: 1.2;
+  -webkit-font-smoothing: antialiased;
+}
+.story-phone__display *, .story-phone__display *::before, .story-phone__display *::after { box-sizing: border-box; }
+.story-phone__status {
+  position: absolute;
+  z-index: 3;
+  inset: 0 8% auto;
+  height: 7%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #213730;
+  font-size: clamp(8px, 4.5cqw, 13px);
+  line-height: 1;
+}
+.story-phone__status span { display: flex; align-items: center; gap: 1.8cqw; }
+.story-phone__signal { width: 5.5cqw; height: 3.6cqw; background: currentColor; clip-path: polygon(0 68%, 22% 68%, 22% 47%, 45% 47%, 45% 24%, 68% 24%, 68% 0, 100% 0, 100% 100%, 0 100%); }
+.story-phone__battery { position: relative; width: 7.3cqw; height: 3.6cqw; padding: .45cqw; border: 1px solid currentColor; border-radius: 1cqw; background: currentColor; background-clip: content-box; }
+.story-phone__battery::after { content: ''; position: absolute; right: -1cqw; top: 24%; height: 52%; width: .65cqw; border-radius: 1px; background: currentColor; }
+.story-phone__island { position: absolute; z-index: 3; top: 2.1%; left: 50%; width: 20%; height: 3.1%; transform: translateX(-50%); background: #101719; border-radius: 99px; }
+.story-phone__island::after { content: ''; position: absolute; top: 25%; right: 13%; height: 50%; aspect-ratio: 1; border-radius: 50%; background: #273335; }
+.story-phone__gesture { position: absolute; z-index: 3; bottom: 1.3%; left: 36%; width: 28%; height: max(2px, .55cqh); border-radius: 99px; background: #596760; }
+
+.story-phone__home {
+  position: absolute;
+  inset: 0;
+  color: #fff;
+  background: linear-gradient(180deg, #eae7d64d 1%, transparent 30%, #0b2d2c50 75%), url('../assets/plan-to-hills.webp') 52% center / cover;
+  opacity: var(--phone-home-alpha);
+}
+.story-phone__clock { position: absolute; inset: 17% 0 auto; display: grid; justify-items: center; gap: .55cqh; color: #203e34; }
+.story-phone__clock span { font-size: clamp(9px, 5cqw, 14px); font-weight: 650; }
+.story-phone__clock strong { font-size: 19cqw; font-weight: 500; letter-spacing: -.075em; line-height: 1.03; font-variant-numeric: tabular-nums; }
+.story-phone__launch-icon { position: absolute; left: 13%; top: 49%; width: 21%; text-align: center; }
+.story-phone__launch-icon img { display: block; width: 100%; height: auto; aspect-ratio: 1; padding: 9%; border-radius: 24%; background: #f4f7f2; object-fit: contain; box-shadow: 0 .8cqh 1.6cqh #10251b26; transform: scale(var(--phone-icon-scale)); }
+.story-phone__launch-icon span { display: block; white-space: nowrap; margin-top: .8cqh; color: #fff; font-size: clamp(9px, 4.7cqw, 14px); font-weight: 650; text-shadow: 0 1px 4px #163e31; }
+.story-phone__touch { position: absolute; left: 48%; top: 33%; width: 138%; aspect-ratio: 1; border-radius: 50%; border: max(1px, .65cqw) solid white; background: #fff6; box-shadow: 0 0 0 .7cqw #274a414a; transform: translate(-50%, -50%) scale(var(--phone-touch-scale)); opacity: var(--phone-touch-alpha); }
+.story-phone__dock { position: absolute; inset: auto 9% 5.8%; height: 12%; display: flex; align-items: center; justify-content: space-evenly; border: 1px solid #ffffff6e; border-radius: 10cqw; background: #e8f5ee48; backdrop-filter: blur(5px); }
+.story-phone__dock-icon { width: 20%; aspect-ratio: 1; border-radius: 25%; display: grid; place-content: center; position: relative; font-style: normal; }
+.story-phone__dock-phone { color: #fff; font: 650 11cqw/1 system-ui,sans-serif; background: linear-gradient(#a1d789, #439161); }
+.story-phone__dock-chat { background: linear-gradient(#86c8e4, #5187a7); }
+.story-phone__dock-chat::after { content: ''; width: 9cqw; height: 7.2cqw; border-radius: 50%; background: #fff; clip-path: polygon(0 0,100% 0,100% 82%,52% 82%,18% 100%,23% 80%,0 80%); }
+.story-phone__dock-camera { background: linear-gradient(#e0e4de, #9da9a1); }
+.story-phone__dock-camera::after { content: ''; width: 8.5cqw; height: 8.5cqw; border: 1.5cqw solid #53635e; border-radius: 50%; background: #243b3a; box-shadow: 0 0 0 .6cqw #f6f6eb; }
+
+.story-phone__app {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding-top: 7cqh;
+  background: #fafbf6;
+  color: #18382d;
+  transform-origin: 23.5% 54%;
+  transform: scale(var(--phone-open-scale));
+  opacity: var(--phone-open-alpha);
+  border-radius: var(--phone-open-radius);
+}
+.story-phone__app-header { height: 9.5cqh; flex: none; display: grid; place-items: center; border-bottom: 1px solid #dbe6dc; }
+.story-phone__app-header img { width: 31%; height: auto; }
+.story-phone__agenda { flex: 1; min-height: 0; display: flex; flex-direction: column; justify-content: space-evenly; padding: 1.4cqh 6.5cqw 1.2cqh; }
+.story-phone__agenda-heading { display: flex; align-items: baseline; justify-content: space-between; }
+.story-phone__agenda-heading strong { font-size: clamp(12px, 8.25cqw, 24px); font-weight: 750; }
+.story-phone__agenda-heading > span { font-size: clamp(8px, 4.7cqw, 14px); color: #536b60; }
+.story-phone__date { font-size: clamp(9px, 5.15cqw, 15px); font-weight: 720; margin-bottom: 1cqh; }
+.story-phone__date span { font-size: .93em; color: #506a5f; }
+.story-phone__event { display: flex; align-items: center; min-height: 7.5cqh; gap: 2cqw; padding: 1.1cqh 2.7cqw; border-radius: 2.8cqw; border-left: max(2px,1cqw) solid #569976; background: #dceee2; }
+.story-phone__event i { width: 4.4cqw; aspect-ratio: 1; border-radius: 50%; border: 1px solid #718e7b; flex: none; }
+.story-phone__event b { font-size: clamp(9px, 5.25cqw, 16px); font-weight: 700; white-space: nowrap; }
+.story-phone__event > span { margin-left: auto; font-size: clamp(8px, 4.75cqw, 14px); font-variant-numeric: tabular-nums; color: #304b3f; }
+.story-phone__synced { display: flex; align-items: center; gap: 1.6cqw; font-size: clamp(8px, 4.35cqw, 13px); color: #356850; opacity: var(--phone-sync-alpha); white-space: nowrap; }
+.story-phone__synced i { display: grid; place-items: center; width: 5.3cqw; height: 5.3cqw; border-radius: 50%; background: #ddede1; font-weight: 700; font-style: normal; }
+.story-phone__app-nav { height: 10cqh; padding: 1.2cqh 4% 2.8cqh; display: flex; align-items: center; justify-content: space-around; border-top: 1px solid #dbe6dc; color: #576e61; }
+.story-phone__app-nav > span { flex: 1; display: grid; justify-items: center; gap: .65cqh; font-size: clamp(7px, 3.85cqw, 11px); }
+.story-phone__app-nav i { display: grid; place-items: center; width: 4.8cqw; height: 4.8cqw; position: relative; font-style: normal; }
+.story-phone__app-nav > span:first-child { color: #235440; font-weight: 700; }
+.story-phone__nav-home { background: currentColor; clip-path: polygon(0 42%,50% 0,100% 42%,89% 42%,89% 100%,62% 100%,62% 61%,38% 61%,38% 100%,11% 100%,11% 42%); }
+.story-phone__nav-calendar { border: 1px solid currentColor; border-radius: 2px; }
+.story-phone__nav-calendar::after { content: ''; position: absolute; top: 25%; inset-inline: 0; border-top: 1px solid currentColor; }
+.story-phone__nav-chat { border: 1px solid currentColor; border-radius: 50% 50% 50% 1px; }
+.story-phone__nav-more { font: 800 5cqw/.65 sans-serif; }

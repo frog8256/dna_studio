@@ -4,6 +4,7 @@ import paperScreen from '../assets/plan-to-paper.webp'
 import { planTo, planToRelease } from '../data/brand'
 import { PlanToDownload } from './PlanToDownload'
 import { PlanToExplorer } from './PlanToExplorer'
+import { PlanToStory } from './PlanToStory'
 import './plan-to-page.css'
 
 const screens = [
@@ -82,6 +83,7 @@ function DesktopDetails() {
 export function PlanToPage() {
   return (
     <div className="pt-service">
+      <PlanToStory />
       <section className="pt-hero" aria-labelledby="pt-title">
         <div className="container pt-hero-grid">
           <div className="pt-intro">
@@ -89,8 +91,8 @@ export function PlanToPage() {
               <img src={planTo.wordmark} alt={planTo.name} width="840" height="270" />
               <span>Windows 데스크톱 캘린더</span>
             </div>
-            <h1 id="pt-title">오늘의 계획을<br /><em>바탕화면에.</em></h1>
-            <p>한 달 일정과 오늘 할 일을 나란히 보고,<br className="pt-wide-break" /> 떠오른 메모는 그날의 계획으로 옮기세요.</p>
+            <h2 id="pt-title">내 바탕화면에 맞는<br /><em>캘린더 테마</em></h2>
+            <p>배경이 비치는 글라스와 부드러운 파스텔 종이 중에서 골라 보세요. 앱 화면을 누르면 크게 볼 수 있어요.</p>
             <div className="pt-hero-actions">
               <a className="pt-primary" href={planToRelease.download}>
                 <span className="windows-icon" aria-hidden="true"><i /><i /><i /><i /></span> Windows용 다운로드
