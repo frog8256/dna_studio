@@ -5,6 +5,10 @@ export const storyAppointments = [
   { day: 27, weekday: '금', title: '주간 회고', time: '16:00', color: 'lilac' },
 ] as const
 
+// The last caption and the centered phone share the same completed frame.
+export const phoneEntrance = 8.35
+export const phoneAgendaReady = 9.32
+
 export function scenePhase(progress: number, start: number, end: number) {
   const t = Math.max(0, Math.min(1, (progress - start) / (end - start)))
   return t * t * (3 - 2 * t)

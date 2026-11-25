@@ -70,8 +70,9 @@
 .story-phone__clock { position: absolute; inset: 17% 0 auto; display: grid; justify-items: center; gap: .55cqh; color: #203e34; }
 .story-phone__clock span { font-size: clamp(9px, 5cqw, 14px); font-weight: 650; }
 .story-phone__clock strong { font-size: 19cqw; font-weight: 500; letter-spacing: -.075em; line-height: 1.03; font-variant-numeric: tabular-nums; }
-.story-phone__launch-icon { position: absolute; left: 13%; top: 49%; width: 21%; text-align: center; }
-.story-phone__launch-icon img { display: block; width: 100%; height: auto; aspect-ratio: 1; padding: 9%; border-radius: 24%; background: #f4f7f2; object-fit: contain; box-shadow: 0 .8cqh 1.6cqh #10251b26; transform: scale(var(--phone-icon-scale)); }
+.story-phone__launch-icon { position: absolute; left: 13%; top: 49%; width: 21%; min-width: 32px; padding: 0; border: 0; background: transparent; text-align: center; font: inherit; }
+.story-phone__launch-icon:enabled { pointer-events: auto; cursor: pointer; }
+.story-phone__launch-icon img { display: block; width: 100%; height: auto; aspect-ratio: 1; filter: drop-shadow(0 1px 1px #f2fff0a6); transform: scale(var(--phone-icon-scale)); }
 .story-phone__launch-icon span { display: block; white-space: nowrap; margin-top: .8cqh; color: #fff; font-size: clamp(9px, 4.7cqw, 14px); font-weight: 650; text-shadow: 0 1px 4px #163e31; }
 .story-phone__touch { position: absolute; left: 48%; top: 33%; width: 138%; aspect-ratio: 1; border-radius: 50%; border: max(1px, .65cqw) solid white; background: #fff6; box-shadow: 0 0 0 .7cqw #274a414a; transform: translate(-50%, -50%) scale(var(--phone-touch-scale)); opacity: var(--phone-touch-alpha); }
 .story-phone__dock { position: absolute; inset: auto 9% 5.8%; height: 12%; display: flex; align-items: center; justify-content: space-evenly; border: 1px solid #ffffff6e; border-radius: 10cqw; background: #e8f5ee48; backdrop-filter: blur(5px); }

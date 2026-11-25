@@ -1,19 +1,20 @@
 import type { CSSProperties } from 'react'
 import { planTo } from '../data/brand'
-import { asset } from '../data/paths'
-import { scenePhase as phase, storyAppointments } from '../data/story'
+import mobileLauncher from '../assets/plan-to-mobile-launcher.webp'
+import { phoneAgendaReady, phoneEntrance, scenePhase as phase, storyAppointments } from '../data/story'
 import './story-phone.css'
 
-function PhoneHome() {
+function PhoneHome({ canOpen, onOpen }: { canOpen: boolean; onOpen: () => void }) {
   return (
     <div className="story-phone__home">
-      <div className="story-phone__clock"><span>11월 25일 수요일</span><strong>09:41</strong></div>
-      <div className="story-phone__launch-icon">
-        <img src={asset('/brand/plan-to-app-icon.webp')} alt="" draggable={false} />
+      <div className="story-phone__clock" aria-hidden="true"><span>11월 25일 수요일</span><strong>09:41</strong></div>
+      <button type="button" className="story-phone__launch-icon" aria-label="모바일 Plan to 일정 열기"
+        onClick={onOpen} disabled={!canOpen}>
+        <img src={mobileLauncher} alt="" draggable={false} />
         <span>Plan to</span>
         <i className="story-phone__touch" />
-      </div>
-      <div className="story-phone__dock">
+      </button>
+      <div className="story-phone__dock" aria-hidden="true">
         <i className="story-phone__dock-icon story-phone__dock-phone">✆</i>
         <i className="story-phone__dock-icon story-phone__dock-chat" />
         <i className="story-phone__dock-icon story-phone__dock-camera" />
@@ -22,9 +23,9 @@ function PhoneHome() {
   )
 }
 
-function PhoneAgenda() {
+function PhoneAgenda({ ready }: { ready: boolean }) {
   return (
-    <div className="story-phone__app">
+    <div className="story-phone__app" aria-hidden={!ready}>
       <div className="story-phone__app-header">
         <img src={planTo.wordmark} alt="" draggable={false} />
       </div>
@@ -48,31 +49,33 @@ function PhoneAgenda() {
   )
 }
 
-export function StoryPhone({ progress }: { progress: number }) {
-  const arrival = phase(progress, 8.35, 9.32)
-  const touch = phase(progress, 9.43, 9.64)
-  const open = phase(progress, 9.52, 9.82)
+export function StoryPhone({ progress, onOpen }: { progress: number; onOpen: () => void }) {
+  const arrival = phase(progress, phoneEntrance, phoneAgendaReady)
+  const travelLeft = (1 - arrival) ** 2
+  const touch = phase(progress, 8.96, 9.15)
+  const open = phase(progress, 9.07, phoneAgendaReady)
+  const ready = progress >= phoneAgendaReady
   const style = {
-    visibility: progress > 8.35 ? 'visible' : 'hidden',
-    '--phone-x': `${-106 * (1 - arrival)}cqw`,
-    '--phone-angle': `${-9 * (1 - arrival)}deg`,
+    visibility: progress > phoneEntrance ? 'visible' : 'hidden',
+    '--phone-x': `${-106 * travelLeft}cqw`,
+    '--phone-angle': `${-9 * travelLeft}deg`,
     '--phone-tilt-scale': .95 + .05 * arrival,
     '--phone-touch-alpha': Math.sin(Math.PI * touch),
     '--phone-touch-scale': .48 + 1.05 * touch,
     '--phone-icon-scale': 1 - .10 * Math.sin(Math.PI * touch),
-    '--phone-open-alpha': phase(progress, 9.52, 9.64),
+    '--phone-open-alpha': phase(progress, 9.07, 9.20),
     '--phone-open-scale': .18 + .82 * open,
     '--phone-open-radius': `${13 * (1 - open)}%`,
     '--phone-home-alpha': 1 - open,
-    '--phone-sync-alpha': phase(progress, 9.73, 9.82),
+    '--phone-sync-alpha': phase(progress, 9.20, phoneAgendaReady),
   } as CSSProperties
 
   return (
-    <div className="story-phone" style={style} aria-hidden="true">
+    <div className="story-phone" style={style}>
       <div className="story-phone__display">
-        <PhoneHome />
-        <PhoneAgenda />
-        <div className="story-phone__status"><b>9:41</b><span><i className="story-phone__signal" /><i className="story-phone__battery" /></span></div>
+        {!ready && <PhoneHome canOpen={arrival > .5 && open < .85} onOpen={onOpen} />}
+        {open > 0 && <PhoneAgenda ready={ready} />}
+        <div className="story-phone__status" aria-hidden="true"><b>9:41</b><span><i className="story-phone__signal" /><i className="story-phone__battery" /></span></div>
         <i className="story-phone__island" />
         <i className="story-phone__gesture" />
       </div>

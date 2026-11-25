@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState, type CSSProperties } from 'react'
 import { planTo } from '../data/brand'
 import { asset } from '../data/paths'
-import { scenePhase as ease } from '../data/story'
+import { phoneAgendaReady, phoneEntrance, scenePhase as ease } from '../data/story'
 import { StoryCalendar } from './StoryCalendar'
 import { StoryWindows, StoryStickers } from './StoryWindows'
 import { StoryPhone } from './StoryPhone'
@@ -16,7 +16,7 @@ const scenes = [
   { start: 5.37, rest: 5.98, name: '창 정리', title: '작업 창을 닫아도 메모는 그대로.', copy: '폴더부터 메일까지 네 개의 창을 닫으면 달력과 두 스티커가 남습니다.' },
   { start: 6.02, rest: 7.02, name: 'AI 일정 등록', title: '이번 주 일정 세 개를 한 번에.', copy: 'Plan to AI 채팅에 부탁하면 기획 회의, 시안 검토, 주간 회고가 달력에 차례로 들어갑니다.' },
   { start: 7.14, rest: 7.88, name: '동기화', title: '채팅에서 등록과 동기화를 확인해요.', copy: '연결한 Google 캘린더와의 동기화가 끝나면 일정 등록 완료 메시지가 나타납니다.' },
-  { start: 8.38, rest: 10, name: '휴대폰', title: '휴대폰에도 같은 세 일정이.', copy: '같은 계정으로 모바일 Plan to를 열면 PC에서 등록한 일정과 시간이 그대로 보입니다.' },
+  { start: phoneAgendaReady, rest: 10, name: '휴대폰', title: '휴대폰에도 같은 세 일정이.', copy: '같은 계정으로 모바일 Plan to를 열면 PC에서 등록한 일정과 시간이 그대로 보입니다.' },
 ] as const
 
 const clamp = (value: number) => Math.max(0, Math.min(1, value))
@@ -39,7 +39,7 @@ function Laptop({ progress }: { progress: number }) {
     '--press': press,
   } as CSSProperties
   return (
-    <div className="story-laptop" style={layout}>
+    <div className="story-laptop" style={layout} aria-hidden="true">
       <div className="story-lid">
         <i className="story-camera" />
         <div className="story-display">
@@ -69,6 +69,7 @@ function Laptop({ progress }: { progress: number }) {
 export function PlanToStory() {
   const track = useRef<HTMLElement>(null)
   const pin = useRef<HTMLDivElement>(null)
+  const captionTitle = useRef<HTMLHeadingElement>(null)
   const [progress, setProgress] = useState(0)
   const [reducedMotion, setReducedMotion] = useState(false)
   useEffect(() => {
@@ -115,6 +116,7 @@ export function PlanToStory() {
     window.scrollTo({ top: Math.ceil(top), behavior: 'instant' })
   }
   const visualProgress = reducedMotion ? scene.rest : progress
+  const enteringPhone = visualProgress >= phoneEntrance && visualProgress < phoneAgendaReady
   return (
     <section className="story-track" ref={track} aria-label="Plan to 사용 흐름">
       <div className="story-pin" ref={pin}>
@@ -123,14 +125,20 @@ export function PlanToStory() {
             <div className="story-brand"><img src={planTo.wordmark} alt="Plan to" /><span>데스크톱 캘린더</span></div>
             <nav aria-label="소개 건너뛰기"><a href="#features">기능 보기</a><a className="story-install" href="#download">다운로드</a></nav>
           </div>
-          <div className="story-stage" aria-hidden="true">
+          <div className="story-stage">
             <Laptop progress={visualProgress} />
-            <StoryPhone progress={visualProgress} />
+            <StoryPhone progress={visualProgress} onOpen={() => {
+              goToScene(scenes.length - 1)
+              captionTitle.current?.focus({ preventScroll: true })
+            }} />
           </div>
           <div className="story-console">
             <div className="story-caption" aria-live="polite" aria-atomic="true">
               <span className="story-number">{String(active + 1).padStart(2, '0')} <span>/ {String(scenes.length).padStart(2, '0')}</span></span>
-              <div><h1>{scene.title}</h1><p>{scene.copy}</p></div>
+              <div>
+                <h1 ref={captionTitle} tabIndex={-1}>{enteringPhone ? '휴대폰에서 Plan to를 열어요.' : scene.title}</h1>
+                <p>{enteringPhone ? '스크롤을 내리거나 Plan to 아이콘을 눌러 PC에서 등록한 일정을 확인하세요.' : scene.copy}</p>
+              </div>
             </div>
             <div className="story-bar">
               <nav className="story-segments" aria-label="장면 바로가기">
