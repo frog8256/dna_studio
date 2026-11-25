@@ -28,7 +28,9 @@ body[data-page="plan-to"] .site-footer { color: #effff8; background: rgb(6 28 26
 body[data-page="plan-to"] .site-footer small { color: #dbebe3; }
 body[data-page="plan-to"] :is(a, button):focus-visible { outline: 3px solid #b6ffda; outline-offset: 3px; }
 
-.story-track { position: relative; height: calc(100vh + 680vh - var(--header-height)); height: calc(780svh - var(--header-height)); }
+.story-track { position: relative; }
+.story-opening-travel { height: 240vh; height: 240svh; pointer-events: none; }
+.story-track::after { content: ''; display: block; height: 680vh; height: 680svh; pointer-events: none; }
 .story-pin { position: sticky; top: var(--header-height); height: calc(100vh - var(--header-height)); height: calc(100svh - var(--header-height)); }
 .story-shell {
   height: 100%; width: min(100%, 1640px); margin: auto; display: grid;
@@ -161,7 +163,8 @@ body[data-page="plan-to"] :is(a, button):focus-visible { outline: 3px solid #b6f
   .story-bar { margin-top: 0; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .story-track { height: calc(455svh - var(--header-height)); }
+  .story-opening-travel { height: 45vh; height: 45svh; }
+  .story-track::after { height: 355vh; height: 355svh; }
 }
 @media (prefers-reduced-transparency: reduce) {
   body[data-page="plan-to"]::before { background: #23453e; }
