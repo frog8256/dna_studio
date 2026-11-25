@@ -1,57 +1,110 @@
+import { useRef, useState } from 'react'
+import glassScreen from '../assets/plan-to-window.webp'
+import paperScreen from '../assets/plan-to-paper.webp'
 import { planTo, planToRelease } from '../data/brand'
-import { PlanToPreview } from './PlanToPreview'
+import { PlanToDownload } from './PlanToDownload'
+import { PlanToExplorer } from './PlanToExplorer'
+import './plan-to-page.css'
+
+const screens = [
+  { label: '글라스', src: glassScreen, description: '투명한 월간 캘린더와 선택한 날짜의 할 일 목록' },
+  { label: '파스텔 종이', src: paperScreen, description: '종이색 배경의 월간 캘린더와 오른쪽에 열린 AI 채팅 패널' },
+]
+
+function CalendarShowcase() {
+  const [selected, setSelected] = useState(0)
+  const dialog = useRef<HTMLDialogElement>(null)
+  const screen = screens[selected]
+
+  return (
+    <figure className="pt-showcase">
+      <button type="button" className="pt-scenery" onClick={() => dialog.current?.showModal()}
+        aria-label={`${screen.label} 테마의 실제 앱 화면 크게 보기`} aria-haspopup="dialog">
+        <img className={selected === 0 ? 'pt-screen pt-glass-screen' : 'pt-screen'} src={screen.src} alt={screen.description} width="1536" height="936" fetchPriority="high" />
+        <span className="pt-zoom" aria-hidden="true">⛶</span>
+      </button>
+      <figcaption className="pt-caption">
+        <span>Windows 앱 화면</span>
+        <div className="pt-themes" role="group" aria-label="화면 테마 미리보기">
+          {screens.map((choice, index) => (
+            <button key={choice.label} type="button" aria-pressed={selected === index}
+              onClick={() => setSelected(index)}>
+              <i className={index === 0 ? 'pt-glass-swatch' : 'pt-paper-swatch'} aria-hidden="true" />
+              {choice.label}
+            </button>
+          ))}
+        </div>
+      </figcaption>
+      <dialog className="pt-zoom-dialog" ref={dialog} aria-labelledby="screen-title"
+        onClick={(event) => { if (event.target === event.currentTarget) dialog.current?.close() }}>
+        <div className="pt-dialog-inner">
+          <header>
+            <strong id="screen-title">Plan to · {screen.label} 테마</strong>
+            <button type="button" autoFocus onClick={() => dialog.current?.close()}>닫기</button>
+          </header>
+          <div className="pt-dialog-image"><img className={selected === 0 ? 'pt-glass-screen' : undefined} src={screen.src} alt={screen.description} /></div>
+        </div>
+      </dialog>
+    </figure>
+  )
+}
+
+function DesktopDetails() {
+  return (
+    <section className="pt-desktop" aria-labelledby="desktop-title">
+      <div className="container pt-wrap">
+        <h2 id="desktop-title">PC에서 계획을 챙기는 방법</h2>
+        <div className="pt-detail-grid">
+          <article>
+            <div className="pt-feature-icon pt-window-icon" aria-hidden="true"><i /></div>
+            <h3>필요할 때 꺼내는 캘린더</h3>
+            <p>바탕화면에 붙여 두거나 일반 창으로 열고, 작업 공간이 좁을 땐 미니 캘린더로 바꾸세요.</p>
+            <div className="pt-shortcut"><span>일반 창과 바탕화면 전환</span><div><kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd aria-label="위 방향키">↑</kbd></div></div>
+          </article>
+          <article>
+            <div className="pt-feature-icon pt-bell-icon" aria-hidden="true"><i /></div>
+            <h3>알림 창에서 바로 완료</h3>
+            <p>일정마다 PC 알림 시각을 정하세요. 알림이 뜨면 바로 완료하거나 일정을 열어 내용을 확인할 수 있어요.</p>
+            <p className="pt-detail-note">손을 뗄 수 없을 땐 ‘10분 뒤’로 미루세요.</p>
+          </article>
+          <article>
+            <div className="pt-feature-icon pt-sync-icon" aria-hidden="true">⇄</div>
+            <h3>기기를 옮겨도 같은 계획</h3>
+            <p>같은 계정으로 앱·웹·PC의 일정, 완료 상태, 루틴, D-day와 메모를 동기화하세요.</p>
+            <p className="pt-detail-note">Google 캘린더를 골라 가져오고, 쓰기 권한이 있는 캘린더에는 일정을 보낼 수 있어요.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  )
+}
 
 export function PlanToPage() {
   return (
-    <div className="container plan-to-page">
-      <section className="download-intro" aria-labelledby="download-title">
-        <img className="plan-to-wordmark" src={planTo.wordmark} alt={planTo.name} width="840" height="270" />
-        <h1 id="download-title">{planTo.title}</h1>
-        <p>캘린더와 할 일을 한눈에 확인하고, 더 간편하게 관리하세요.</p>
-        <a className="primary-button download-button" href={planToRelease.download}>
-          <span className="windows-icon" aria-hidden="true"><i /><i /><i /><i /></span>
-          Windows용 다운로드
-        </a>
-        <p className="download-meta">{planToRelease.version} · Windows x64 · ZIP</p>
-      </section>
-
-      <PlanToPreview detail />
-
-      <section className="download-section" aria-labelledby="install-title">
-        <h2 id="install-title">설치 및 실행 방법</h2>
-        <ol className="install-steps">
-          <li>
-            <h3>다운로드</h3>
-            <p>위 버튼에서 Windows용 ZIP 파일을 받아요.</p>
-          </li>
-          <li>
-            <h3>압축 해제</h3>
-            <p>파일을 원하는 폴더에 모두 풀어요.</p>
-          </li>
-          <li>
-            <h3>실행</h3>
-            <p>압축을 푼 폴더에서 <code>Plan to.exe</code>를 실행해요.</p>
-          </li>
-        </ol>
-      </section>
-
-      <section className="download-section" aria-labelledby="release-title">
-        <div className="section-heading">
-          <h2 id="release-title">릴리스 노트</h2>
-          <a href={planToRelease.allReleasesUrl}>
-            전체 릴리스 보기 <span aria-hidden="true">↗</span>
-          </a>
-        </div>
-        <div className="release-entry">
-          <div className="release-meta">
-            <a href={planToRelease.url}>{planToRelease.version}</a>
-            <time dateTime={planToRelease.date}>{planToRelease.dateLabel}</time>
+    <div className="pt-service">
+      <section className="pt-hero" aria-labelledby="pt-title">
+        <div className="container pt-hero-grid">
+          <div className="pt-intro">
+            <div className="pt-signature">
+              <img src={planTo.wordmark} alt={planTo.name} width="840" height="270" />
+              <span>Windows 데스크톱 캘린더</span>
+            </div>
+            <h1 id="pt-title">오늘의 계획을<br /><em>바탕화면에.</em></h1>
+            <p>한 달 일정과 오늘 할 일을 나란히 보고,<br className="pt-wide-break" /> 떠오른 메모는 그날의 계획으로 옮기세요.</p>
+            <div className="pt-hero-actions">
+              <a className="pt-primary" href={planToRelease.download}>
+                <span className="windows-icon" aria-hidden="true"><i /><i /><i /><i /></span> Windows용 다운로드
+              </a>
+              <a className="pt-secondary" href="#features">기능 둘러보기</a>
+            </div>
+            <p className="pt-version">Windows x64 <span>·</span> ZIP <span>·</span> {planToRelease.version}</p>
           </div>
-          <ul>
-            {planToRelease.notes.map((note) => <li key={note}>{note}</li>)}
-          </ul>
+          <CalendarShowcase />
         </div>
       </section>
+      <PlanToExplorer />
+      <DesktopDetails />
+      <PlanToDownload />
     </div>
   )
 }

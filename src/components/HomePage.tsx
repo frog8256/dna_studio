@@ -17,7 +17,7 @@ export function HomePage() {
             <h2 id="plan-to-title">{planTo.title}</h2>
             <p>일정 확인과 할 일 관리를 더 가깝고, 더 간편하게.</p>
             <a className="primary-button" href={planToPath}>
-              <span className="download-icon" aria-hidden="true">↓</span> Plan to 다운로드
+              Plan to 자세히 보기
             </a>
           </div>
           <PlanToPreview />
