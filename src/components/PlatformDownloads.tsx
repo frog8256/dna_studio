@@ -40,15 +40,18 @@ export function PlatformDownloads() {
       {mobilePlatforms.map(platform => (
         <button type="button" className="platform-mobile" key={platform.id} onClick={() => setSelected(platform)}
           aria-haspopup="dialog" aria-label={`${platform.name} QR · Coming soon`}>
-          <img src={platform.qr} width="41" height="41" alt="" />
-          <span><strong>{platform.name}</strong><small lang="en">Coming soon</small></span>
+          <img src={platform.qr} width="33" height="33" alt="" />
+          <strong>{platform.name}</strong>
+          <small className="platform-qr-badge" lang="en">Coming soon</small>
         </button>
       ))}
       <dialog ref={dialog} className="platform-dialog" onClose={dismiss} aria-labelledby="platform-title">
         {selected && <>
           <h2 id="platform-title">Plan to · {selected.name}</h2>
-          <img src={selected.qr} width="205" height="205" alt={`${selected.name} QR`} />
-          <strong lang="en">Coming soon</strong>
+          <div className="platform-dialog-qr">
+            <img src={selected.qr} width="205" height="205" alt={`${selected.name} QR`} />
+            <small className="platform-qr-badge" lang="en">Coming soon</small>
+          </div>
           <p>{t(`${selected.name} 버전은 출시 준비 중입니다.`, `Plan to for ${selected.name} is coming soon.`, `${selected.name} 版は公開準備中です。`)}</p>
           <form method="dialog"><button>{t('닫기', 'Close', '閉じる')}</button></form>
         </>}
