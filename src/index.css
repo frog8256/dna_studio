@@ -174,8 +174,8 @@ img {
 }
 .language-switch label:has(input:focus-visible) { outline: 2px solid currentColor; outline-offset: -4px; }
 body[data-page="plan-to"] .language-switch {
-  --switch-text: #f0fff7; --switch-active-text: #16382d; --switch-thumb: #d5f5e4; --switch-line: #d1efdf70;
-  border-color: #deffec50; background: rgb(16 41 36 / 48%);
+  --switch-text: var(--pt-muted); --switch-active-text: var(--pt-ink); --switch-thumb: var(--pt-selected); --switch-line: var(--pt-edge);
+  border-color: var(--pt-edge); background: var(--pt-glass);
 }
 @media (prefers-reduced-motion: reduce) { .language-switch__thumb { transition: none; } }
 @media (forced-colors: active) {

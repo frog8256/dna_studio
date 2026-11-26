@@ -2,14 +2,14 @@
   position: absolute;
   z-index: 2;
   inset: 0;
-  color: #203f33;
+  color: var(--pt-ink);
   pointer-events: none;
 }
 
 .story-intro__paper {
   position: absolute;
   inset: 0;
-  background: linear-gradient(120deg, #faf6edf9 12%, #faf6edf1 60%, #eef0e2e8);
+  background: var(--pt-paper) var(--pt-landscape) center / cover;
   opacity: var(--paper-alpha);
 }
 
@@ -44,7 +44,7 @@
   transform: translateX(-50%);
   opacity: var(--line-alpha);
   font: italic 400 20cqw / 1 Georgia, "Times New Roman", serif;
-  color: #23493a;
+  color: var(--pt-ink);
 }
 .intro-motto__bracket {
   flex: none;
@@ -79,23 +79,23 @@
   font-size: .84rem;
   font-weight: 550;
 }
-.intro-scroll { display: inline-flex; align-items: center; gap: .55em; color: #3c584b; }
+.intro-scroll { display: inline-flex; align-items: center; gap: .55em; color: var(--pt-muted); }
 .intro-scroll i { font: 400 1.45em / 1 sans-serif; }
 .intro-controls button {
   display: inline-flex;
   align-items: center;
   gap: .65em;
   padding: .58em .92em;
-  border: 1px solid #314e3b49;
+  border: 1px solid var(--pt-edge);
   border-radius: 99px;
-  color: #254a39;
+  color: var(--pt-ink);
   background: #fffcf54d;
   font: inherit;
   cursor: pointer;
   pointer-events: auto;
 }
 .intro-controls button:hover { background: #fffcf5ce; }
-body[data-page="plan-to"] .intro-controls button:focus-visible { outline-color: #226448; }
+body[data-page="plan-to"] .intro-controls button:focus-visible { outline-color: var(--pt-ink); }
 .intro-controls:focus-within { opacity: 1; }
 
 .story-desktop-wordmark {
