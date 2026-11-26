@@ -38,21 +38,18 @@ body[data-page="plan-to"] :is(a, button):focus-visible { outline: 3px solid #574
 .story-opening-travel { height: 240vh; height: 240svh; pointer-events: none; }
 .story-track::after { content: ''; display: block; height: 680vh; height: 680svh; pointer-events: none; }
 .story-pin { position: sticky; top: var(--header-height); height: calc(100vh - var(--header-height)); height: calc(100svh - var(--header-height)); }
-.seasonal-landscape, .seasonal-landscape > span {
+.seasonal-landscape {
   position: absolute;
   inset: 0;
   pointer-events: none;
   background-position: center;
   background-size: cover;
-}
-.seasonal-landscape {
   z-index: -1;
   background-color: var(--pt-paper);
-  background-image: url('../assets/season-spring.webp');
+  background-image: var(--pt-landscape);
 }
-.season-summer { background-image: url('../assets/season-summer.webp'); opacity: var(--summer); }
-.season-autumn { background-image: url('../assets/season-autumn.webp'); opacity: var(--autumn); }
-.season-winter { background-image: url('../assets/season-winter.webp'); opacity: var(--winter); }
+.seasonal-landscape canvas { display: block; width: 100%; height: 100%; object-fit: cover; max-width: none; }
+.pt-service > .seasonal-landscape { position: fixed; }
 .story-shell {
   height: 100%; width: min(100%, 1640px); margin: auto; display: grid;
   grid-template-rows: auto minmax(0, 1fr) auto; color: var(--pt-ink);

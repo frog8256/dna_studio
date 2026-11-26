@@ -6,7 +6,7 @@ import { StoryCalendar } from './StoryCalendar'
 import { StoryWindows, StoryStickers } from './StoryWindows'
 import { StoryPhone } from './StoryPhone'
 import { StoryIntro } from './StoryIntro'
-import { SeasonalLandscape } from './SeasonalLandscape'
+import { SeasonalScene, SeasonalLandscape } from './SeasonalLandscape'
 import './plan-to-story.css'
 
 const clamp = (value: number) => Math.max(0, Math.min(1, value))
@@ -131,62 +131,58 @@ export function PlanToStory() {
   const visualProgress = reducedMotion ? scene.rest : Math.max(0, progress)
   const enteringPhone = visualProgress >= phoneEntrance && visualProgress < phoneAgendaReady
   const openingProgress = progress + 1
-  function seasonOpacity(start: number, end: number) {
-    return reducedMotion ? Number(progress >= (start + end) / 2) : ease(progress, start, end)
-  }
-  const seasonStyle = {
-    '--summer': seasonOpacity(-.65, .3),
-    '--autumn': seasonOpacity(2.3, 4.5),
-    '--winter': seasonOpacity(6.6, 8.8),
-  } as CSSProperties
+  // The signature occupies roughly the first quarter of the scroll distance.
+  const year = progress < 0 ? openingProgress * 1.25 : 1.25 + progress * .375
+  const phase = reducedMotion ? Math.round(year) : Math.floor(year) + ease(year % 1, .08, .92)
   const desktopStyle = {
     opacity: inIntro && reducedMotion ? 0 : ease(openingProgress, .82, .985),
     '--story-controls-opacity': ease(openingProgress, .905, .985),
   } as CSSProperties
   return (
-    <section className="story-track" ref={track} aria-label={t('Plan to 사용 흐름', 'Plan to walkthrough', 'Plan to の使い方')}>
-      <div className="story-pin" ref={pin} style={seasonStyle}>
-        <SeasonalLandscape />
-        <div className="story-shell" style={desktopStyle} inert={inIntro}>
-          <div className="story-top">
-            <div className="story-brand"><img src={planTo.wordmark} alt="Plan to" /><span>{t('데스크톱 캘린더', 'Desktop calendar', 'デスクトップカレンダー')}</span></div>
-            <nav aria-label={t('소개 건너뛰기', 'Skip the walkthrough', '紹介をスキップ')}><a href="#features">{t('기능 보기', 'Features', '機能を見る')}</a><a className="story-install" href="#download">{t('다운로드', 'Download', 'ダウンロード')}</a></nav>
-          </div>
-          <div className="story-stage" ref={stage}>
-            <Laptop progress={visualProgress} wordmark={desktopWordmark} />
-            {!inIntro && <StoryPhone progress={visualProgress} onOpen={() => {
-              goToScene(scenes.length - 1)
-              captionTitle.current?.focus({ preventScroll: true })
-            }} />}
-          </div>
-          <div className="story-console">
-            <div className="story-caption" aria-live="polite" aria-atomic="true">
-              <span className="story-number">{String(active + 1).padStart(2, '0')} <span>/ {String(scenes.length).padStart(2, '0')}</span></span>
-              <div>
-                <h1 ref={captionTitle} tabIndex={-1}>{enteringPhone ? t('휴대폰에서 Plan to를 열어요.', 'Open Plan to on your phone.', 'スマホで Plan to を開きましょう。') : scene[language].title}</h1>
-                <p>{enteringPhone ? t('스크롤을 내리거나 Plan to 아이콘을 눌러 PC에서 등록한 일정을 확인하세요.', 'Scroll down or tap the Plan to icon to see the events you added on your PC.', '下にスクロールするか、Plan to のアイコンをタップして、PCで登録した予定を確認しましょう。') : scene[language].copy}</p>
+    <SeasonalScene phase={phase}>
+      <section className="story-track" ref={track} aria-label={t('Plan to 사용 흐름', 'Plan to walkthrough', 'Plan to の使い方')}>
+        <div className="story-pin" ref={pin}>
+          <div className="story-shell" style={desktopStyle} inert={inIntro}>
+            <div className="story-top">
+              <div className="story-brand"><img src={planTo.wordmark} alt="Plan to" /><span>{t('데스크톱 캘린더', 'Desktop calendar', 'デスクトップカレンダー')}</span></div>
+              <nav aria-label={t('소개 건너뛰기', 'Skip the walkthrough', '紹介をスキップ')}><a href="#features">{t('기능 보기', 'Features', '機能を見る')}</a><a className="story-install" href="#download">{t('다운로드', 'Download', 'ダウンロード')}</a></nav>
+            </div>
+            <div className="story-stage" ref={stage}>
+              <Laptop progress={visualProgress} wordmark={desktopWordmark} />
+              {!inIntro && <StoryPhone progress={visualProgress} onOpen={() => {
+                goToScene(scenes.length - 1)
+                captionTitle.current?.focus({ preventScroll: true })
+              }} />}
+            </div>
+            <div className="story-console">
+              <div className="story-caption" aria-live="polite" aria-atomic="true">
+                <span className="story-number">{String(active + 1).padStart(2, '0')} <span>/ {String(scenes.length).padStart(2, '0')}</span></span>
+                <div>
+                  <h1 ref={captionTitle} tabIndex={-1}>{enteringPhone ? t('휴대폰에서 Plan to를 열어요.', 'Open Plan to on your phone.', 'スマホで Plan to を開きましょう。') : scene[language].title}</h1>
+                  <p>{enteringPhone ? t('스크롤을 내리거나 Plan to 아이콘을 눌러 PC에서 등록한 일정을 확인하세요.', 'Scroll down or tap the Plan to icon to see the events you added on your PC.', '下にスクロールするか、Plan to のアイコンをタップして、PCで登録した予定を確認しましょう。') : scene[language].copy}</p>
+                </div>
+              </div>
+              <div className="story-bar">
+                <nav className="story-segments" aria-label={t('장면 바로가기', 'Jump to a scene', 'シーンを選択')}>
+                  {scenes.map((item, index) => (
+                    <button key={item.start} type="button" title={item[language].name} aria-label={t(`${index + 1}번째 장면 · ${item.ko.name}`, `Scene ${index + 1} · ${item.en.name}`, `シーン${index + 1}・${item.ja.name}`)} aria-current={index === active ? 'step' : undefined}
+                      className={index <= active ? 'story-visited' : ''} onClick={() => goToScene(index)}><span /></button>
+                  ))}
+                </nav>
+                <div className="story-controls">
+                  <button type="button" aria-label={t('이전 장면', 'Previous scene', '前のシーン')} disabled={active === 0} onClick={() => goToScene(active - 1)}>‹</button>
+                  {active + 1 < scenes.length
+                    ? <button type="button" aria-label={t('다음 장면', 'Next scene', '次のシーン')} onClick={() => goToScene(active + 1)}>›</button>
+                    : <a className="story-end" href="#features">{t('기능 보기', 'Features', '機能を見る')}</a>}
+                </div>
               </div>
             </div>
-            <div className="story-bar">
-              <nav className="story-segments" aria-label={t('장면 바로가기', 'Jump to a scene', 'シーンを選択')}>
-                {scenes.map((item, index) => (
-                  <button key={item.start} type="button" title={item[language].name} aria-label={t(`${index + 1}번째 장면 · ${item.ko.name}`, `Scene ${index + 1} · ${item.en.name}`, `シーン${index + 1}・${item.ja.name}`)} aria-current={index === active ? 'step' : undefined}
-                    className={index <= active ? 'story-visited' : ''} onClick={() => goToScene(index)}><span /></button>
-                ))}
-              </nav>
-              <div className="story-controls">
-                <button type="button" aria-label={t('이전 장면', 'Previous scene', '前のシーン')} disabled={active === 0} onClick={() => goToScene(active - 1)}>‹</button>
-                {active + 1 < scenes.length
-                  ? <button type="button" aria-label={t('다음 장면', 'Next scene', '次のシーン')} onClick={() => goToScene(active + 1)}>›</button>
-                  : <a className="story-end" href="#features">{t('기능 보기', 'Features', '機能を見る')}</a>}
-              </div>
-            </div>
           </div>
+          {inIntro && <StoryIntro progress={openingProgress} reducedMotion={reducedMotion} destination={desktopWordmark} stage={stage}
+            onSkip={() => { focusAfterSkip.current = true; goToScene(0) }} />}
         </div>
-        {inIntro && <StoryIntro progress={openingProgress} reducedMotion={reducedMotion} destination={desktopWordmark} stage={stage}
-          onSkip={() => { focusAfterSkip.current = true; goToScene(0) }} />}
-      </div>
-      <div className="story-opening-travel" ref={openingTravel} aria-hidden="true" />
-    </section>
+        <div className="story-opening-travel" ref={openingTravel} aria-hidden="true" />
+      </section>
+    </SeasonalScene>
   )
 }
