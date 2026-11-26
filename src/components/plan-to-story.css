@@ -168,7 +168,7 @@ body[data-page="plan-to"] :is(a, button):focus-visible { outline: 3px solid #574
   .story-caption p { margin-top: 3px; font-size: .8125rem; line-height: 1.4; }
 }
 @media (max-height: 520px) and (min-width: 520px) {
-  body[data-page="plan-to"] { --header-height: 48px; }
+  html:has(body[data-page="plan-to"]) { --nav-height: 48px; }
   body[data-page="plan-to"] .header-content { min-height: 47px; grid-template-areas: "logo menu language"; grid-template-columns: 1fr auto 1fr; }
   body[data-page="plan-to"] .nav-pill { width: auto; }
   body[data-page="plan-to"] .nav-pill a { min-height: 30px; }

@@ -11,7 +11,8 @@
   --blue-hover: #174dc7;
   --line: #e4e7ed;
   --tint: #f5f6f9;
-  --header-height: 68px;
+  --nav-height: 68px;
+  --header-height: calc(var(--nav-height) + var(--platform-row-height, 0px));
   --gutter: clamp(20px, 4vw, 52px);
 }
 
@@ -116,7 +117,7 @@ img {
 
 .header-content {
   display: grid;
-  min-height: calc(var(--header-height) - 1px);
+  min-height: calc(var(--nav-height) - 1px);
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
   column-gap: 12px;
@@ -505,7 +506,7 @@ code {
 
 @media (max-width: 700px) {
   :root {
-    --header-height: 92px;
+    --nav-height: 92px;
   }
 
   .header-content {

@@ -2,6 +2,7 @@ import { useLayoutEffect, useState } from 'react'
 import { base, asset, planToPath } from '../data/paths'
 import { useLanguage } from '../i18n'
 import { LanguageSwitch } from './LanguageSwitch'
+import { PlatformDownloads } from './PlatformDownloads'
 
 function getHomeSection() {
   return window.location.hash === '#korea-plus' ? 'korea-plus' : 'about'
@@ -40,6 +41,7 @@ export function Header({ isPlanTo }: { isPlanTo: boolean }) {
         </nav>
         <LanguageSwitch />
       </div>
+      {isPlanTo && <PlatformDownloads />}
     </header>
   )
 }
