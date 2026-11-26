@@ -84,7 +84,6 @@ export function StoryIntro({ progress, reducedMotion, destination, stage, onSkip
   const exit = scenePhase(p, .835, .925)
   const dock = scenePhase(p, .835, 1)
   const style = {
-    '--paper-alpha': 1 - scenePhase(p, .83, .99),
     '--ink-x': `${landing.x * dock}px`,
     '--ink-y': `${landing.y * dock}px`,
     '--ink-scale': 1 + (landing.scale - 1) * dock,
@@ -98,7 +97,6 @@ export function StoryIntro({ progress, reducedMotion, destination, stage, onSkip
 
   return (
     <div className="story-intro" style={style}>
-      <div className="story-intro__paper" aria-hidden="true" />
       <div className="intro-lockup" ref={origin}>
         <h1 className="intro-title" aria-label="Plan to. Make it!" lang="en"><Signature written={written} /></h1>
         <div className="intro-motto" aria-hidden="true" lang="en">

@@ -64,7 +64,8 @@
   position: absolute;
   inset: 0;
   color: #fff;
-  background: linear-gradient(180deg, transparent 55%, #29252252), var(--pt-landscape) center / cover;
+  isolation: isolate;
+  background: var(--pt-paper);
   opacity: var(--phone-home-alpha);
 }
 .story-phone__clock { position: absolute; inset: 17% 0 auto; display: grid; justify-items: center; gap: .55cqh; color: #203e34; }

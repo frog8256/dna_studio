@@ -2,12 +2,14 @@ import type { CSSProperties } from 'react'
 import { planTo } from '../data/brand'
 import { phoneAgendaReady, phoneEntrance, scenePhase as phase, storyAppointments } from '../data/story'
 import { useLanguage } from '../i18n'
+import { SeasonalLandscape } from './SeasonalLandscape'
 import './story-phone.css'
 
 function PhoneHome({ canOpen, onOpen }: { canOpen: boolean; onOpen: () => void }) {
   const { t } = useLanguage()
   return (
     <div className="story-phone__home">
+      <SeasonalLandscape />
       <div className="story-phone__clock" aria-hidden="true"><span>{t('11월 25일 수요일', 'Wednesday, November 25', '11月25日 水曜日')}</span><strong>09:41</strong></div>
       <button type="button" className="story-phone__launch-icon" aria-label={t('모바일 Plan to 일정 열기', 'Open your schedule in Plan to for mobile', 'モバイル版 Plan to で予定を開く')}
         onClick={onOpen} disabled={!canOpen}>

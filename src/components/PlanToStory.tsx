@@ -6,6 +6,7 @@ import { StoryCalendar } from './StoryCalendar'
 import { StoryWindows, StoryStickers } from './StoryWindows'
 import { StoryPhone } from './StoryPhone'
 import { StoryIntro } from './StoryIntro'
+import { SeasonalLandscape } from './SeasonalLandscape'
 import './plan-to-story.css'
 
 const clamp = (value: number) => Math.max(0, Math.min(1, value))
@@ -37,6 +38,7 @@ const Laptop = memo(function Laptop({ progress, wordmark }: { progress: number; 
             width: `${100 + 200 * lens}%`, height: `${100 + 200 * lens}%`,
             left: `${-180 * lens}%`, top: `${-125 * lens}%`,
           }}>
+            <SeasonalLandscape />
             <img ref={wordmark} className="story-desktop-wordmark" src={planTo.wordmark} alt="" width="840" height="270" />
             <div className="story-os-dock">
               <i className="story-start"><b /><b /><b /><b /></i>
@@ -129,13 +131,22 @@ export function PlanToStory() {
   const visualProgress = reducedMotion ? scene.rest : Math.max(0, progress)
   const enteringPhone = visualProgress >= phoneEntrance && visualProgress < phoneAgendaReady
   const openingProgress = progress + 1
+  function seasonOpacity(start: number, end: number) {
+    return reducedMotion ? Number(progress >= (start + end) / 2) : ease(progress, start, end)
+  }
+  const seasonStyle = {
+    '--summer': seasonOpacity(-.65, .3),
+    '--autumn': seasonOpacity(2.3, 4.5),
+    '--winter': seasonOpacity(6.6, 8.8),
+  } as CSSProperties
   const desktopStyle = {
     opacity: inIntro && reducedMotion ? 0 : ease(openingProgress, .82, .985),
     '--story-controls-opacity': ease(openingProgress, .905, .985),
   } as CSSProperties
   return (
     <section className="story-track" ref={track} aria-label={t('Plan to 사용 흐름', 'Plan to walkthrough', 'Plan to の使い方')}>
-      <div className="story-pin" ref={pin}>
+      <div className="story-pin" ref={pin} style={seasonStyle}>
+        <SeasonalLandscape />
         <div className="story-shell" style={desktopStyle} inert={inIntro}>
           <div className="story-top">
             <div className="story-brand"><img src={planTo.wordmark} alt="Plan to" /><span>{t('데스크톱 캘린더', 'Desktop calendar', 'デスクトップカレンダー')}</span></div>
