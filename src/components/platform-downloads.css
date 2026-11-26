@@ -5,16 +5,7 @@
   gap: clamp(7px, 1.2vw, 16px);
   flex-shrink: 0;
 }
-.platform-features {
-  display: inline-flex;
-  align-items: center;
-  min-height: 44px;
-  color: var(--pt-ink);
-  font-size: .81rem;
-  font-weight: 650;
-  white-space: nowrap;
-}
-.platform-features:hover, .platform-windows:hover { text-decoration: underline; text-underline-offset: .2em; }
+.platform-windows:hover { text-decoration: underline; text-underline-offset: .2em; }
 .platform-windows {
   display: inline-flex;
   align-items: center;
