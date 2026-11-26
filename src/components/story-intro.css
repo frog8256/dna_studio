@@ -100,5 +100,6 @@ body[data-page="plan-to"] .intro-controls button:focus-visible { outline-color: 
   aspect-ratio: 840 / 270;
   pointer-events: none;
 }
-.story-shell[inert] .story-desktop-wordmark { visibility: hidden; }
-.story-shell[inert] :is(.story-top, .story-console) { opacity: var(--story-controls-opacity); }
+.story-stage[inert] .story-desktop-wordmark { visibility: hidden; }
+.story-stage[inert] { opacity: var(--story-desktop-opacity); }
+.story-brand[inert], .story-console[inert] { opacity: calc(var(--story-controls-opacity) * var(--story-desktop-opacity)); }

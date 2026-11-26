@@ -1,26 +1,24 @@
-html:has(body[data-page="plan-to"]) { --platform-row-height: 46px; }
-
 .platform-downloads {
-  height: var(--platform-row-height);
   display: flex;
   align-items: center;
   justify-content: center;
   gap: clamp(7px, 1.2vw, 16px);
-  border-top: 1px solid rgb(66 56 48 / 10%);
-  padding: 0 6px;
+  flex-shrink: 0;
 }
 .platform-windows {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 7px;
-  min-height: 34px;
+  flex-direction: column;
+  gap: 3px;
+  min-height: 44px;
 
   background: #34312f;
   color: white;
   border-radius: 9px;
   padding: 4px 10px;
-  font-size: .8rem;
+  font-size: .7rem;
+  line-height: 1.1;
   font-weight: 650;
 }
 .platform-windows:hover { background: #514a45; }

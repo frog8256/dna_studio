@@ -6,6 +6,7 @@ import { StoryCalendar } from './StoryCalendar'
 import { StoryWindows, StoryStickers } from './StoryWindows'
 import { StoryPhone } from './StoryPhone'
 import { StoryIntro } from './StoryIntro'
+import { PlatformDownloads } from './PlatformDownloads'
 import { SeasonalScene, SeasonalLandscape } from './SeasonalLandscape'
 import './plan-to-story.css'
 
@@ -135,26 +136,26 @@ export function PlanToStory() {
   const year = progress < 0 ? openingProgress * 1.25 : 1.25 + progress * .375
   const phase = reducedMotion ? Math.round(year) : Math.floor(year) + ease(year % 1, .08, .92)
   const desktopStyle = {
-    opacity: inIntro && reducedMotion ? 0 : ease(openingProgress, .82, .985),
+    '--story-desktop-opacity': inIntro && reducedMotion ? 0 : ease(openingProgress, .82, .985),
     '--story-controls-opacity': ease(openingProgress, .905, .985),
   } as CSSProperties
   return (
     <SeasonalScene phase={phase}>
       <section className="story-track" ref={track} aria-label={t('Plan to 사용 흐름', 'Plan to walkthrough', 'Plan to の使い方')}>
         <div className="story-pin" ref={pin}>
-          <div className="story-shell" style={desktopStyle} inert={inIntro}>
+          <div className="story-shell" style={desktopStyle}>
             <div className="story-top">
-              <div className="story-brand"><img src={planTo.wordmark} alt="Plan to" /><span>{t('데스크톱 캘린더', 'Desktop calendar', 'デスクトップカレンダー')}</span></div>
-              <nav aria-label={t('소개 건너뛰기', 'Skip the walkthrough', '紹介をスキップ')}><a href="#features">{t('기능 보기', 'Features', '機能を見る')}</a><a className="story-install" href="#download">{t('다운로드', 'Download', 'ダウンロード')}</a></nav>
+              <div className="story-brand" inert={inIntro}><img src={planTo.wordmark} alt="Plan to" /><span>{t('데스크톱 캘린더', 'Desktop calendar', 'デスクトップカレンダー')}</span></div>
+              <PlatformDownloads />
             </div>
-            <div className="story-stage" ref={stage}>
+            <div className="story-stage" ref={stage} inert={inIntro}>
               <Laptop progress={visualProgress} wordmark={desktopWordmark} />
               {!inIntro && <StoryPhone progress={visualProgress} onOpen={() => {
                 goToScene(scenes.length - 1)
                 captionTitle.current?.focus({ preventScroll: true })
               }} />}
             </div>
-            <div className="story-console">
+            <div className="story-console" inert={inIntro}>
               <div className="story-caption" aria-live="polite" aria-atomic="true">
                 <span className="story-number">{String(active + 1).padStart(2, '0')} <span>/ {String(scenes.length).padStart(2, '0')}</span></span>
                 <div>

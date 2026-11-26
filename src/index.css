@@ -12,7 +12,7 @@
   --line: #e4e7ed;
   --tint: #f5f6f9;
   --nav-height: 68px;
-  --header-height: calc(var(--nav-height) + var(--platform-row-height, 0px));
+  --header-height: var(--nav-height);
   --gutter: clamp(20px, 4vw, 52px);
 }
 

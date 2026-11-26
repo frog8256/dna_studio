@@ -56,16 +56,11 @@ body[data-page="plan-to"] :is(a, button):focus-visible { outline: 3px solid #574
   padding-block: clamp(12px, 2.1vh, 24px) clamp(12px, 2.4vh, 24px);
 }
 .story-top, .story-console { width: min(1120px, calc(100% - 2 * var(--gutter))); margin-inline: auto; }
-.story-top, .story-brand, .story-top nav { display: flex; align-items: center; }
+.story-top, .story-brand { display: flex; align-items: center; }
 .story-top { justify-content: space-between; gap: 10px; }
 .story-brand { gap: 12px; }
 .story-brand img { width: clamp(72px, 8vw, 100px); height: auto; }
 .story-brand span { border-left: 1px solid var(--pt-edge); padding-left: 12px; font-size: .875rem; color: var(--pt-muted); }
-.story-top nav { gap: 8px; flex-shrink: 0; white-space: nowrap; }
-.story-top a { border-radius: 99px; padding: .5rem .8rem; font-size: .875rem; color: var(--pt-ink); font-weight: 650; }
-.story-top a:hover { background: var(--pt-selected); }
-.story-top .story-install { color: var(--pt-ink); background: var(--pt-selected); box-shadow: inset 0 0 0 1px #ffffff95; padding-inline: 1.05rem; }
-.story-top .story-install:hover { color: var(--pt-ink); background: #fff9; }
 .story-stage { position: relative; isolation: isolate; container-type: size; width: 100%; min-height: 0; overflow: clip; }
 .story-laptop {
   width: min(81cqw, 161cqh, 1040px);
@@ -147,9 +142,6 @@ body[data-page="plan-to"] :is(a, button):focus-visible { outline: 3px solid #574
   .story-console { width: calc(100% - 24px); border-radius: 15px; }
   .story-brand { gap: 7px; }
   .story-brand span { font-size: .75rem; padding-left: 7px; }
-  .story-top nav { gap: 0; }
-  .story-top a { padding: .5rem; font-size: .8rem; }
-  .story-top .story-install { padding-inline: .75rem; }
   .story-laptop { width: min(98cqw, 132cqh); }
   .story-lid { width: 94.8%; aspect-ratio: 1.38; }
   .story-caption p { font-size: .8125rem; }
@@ -173,8 +165,7 @@ body[data-page="plan-to"] :is(a, button):focus-visible { outline: 3px solid #574
   body[data-page="plan-to"] .nav-pill { width: auto; }
   body[data-page="plan-to"] .nav-pill a { min-height: 30px; }
   body[data-page="plan-to"] .site-logo { min-height: 32px; }
-  .story-top { display: none; }
-  .story-shell { grid-template-rows: minmax(0,1fr) auto; padding-block: 3px; }
+  .story-shell { padding-block: 3px; }
   .story-console { padding-block: 6px 0; }
   .story-caption h1 { font-size: 1.2rem; }
   .story-caption p { margin-top: 2px; font-size: .8rem; }
