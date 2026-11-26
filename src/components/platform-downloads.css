@@ -5,6 +5,16 @@
   gap: clamp(7px, 1.2vw, 16px);
   flex-shrink: 0;
 }
+.platform-features {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--pt-ink);
+  font-size: .81rem;
+  font-weight: 650;
+  white-space: nowrap;
+}
+.platform-features:hover { text-decoration: underline; text-underline-offset: .2em; }
 .platform-windows {
   display: inline-flex;
   align-items: center;
@@ -31,3 +41,7 @@
 }
 .platform-mobile strong { font-size: .78rem; }
 .platform-mobile small { font-size: .7rem; color: var(--pt-muted); }
+@media (max-width: 430px) {
+  .platform-downloads { gap: 6px; }
+  .platform-windows { padding-inline: 7px; }
+}
