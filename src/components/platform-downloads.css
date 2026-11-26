@@ -14,7 +14,7 @@
   font-weight: 650;
   white-space: nowrap;
 }
-.platform-features:hover { text-decoration: underline; text-underline-offset: .2em; }
+.platform-features:hover, .platform-windows:hover { text-decoration: underline; text-underline-offset: .2em; }
 .platform-windows {
   display: inline-flex;
   align-items: center;
@@ -23,15 +23,12 @@
   gap: 3px;
   min-height: 44px;
 
-  background: #34312f;
-  color: white;
-  border-radius: 9px;
+  color: var(--pt-ink);
   padding: 4px 10px;
   font-size: .7rem;
   line-height: 1.1;
   font-weight: 650;
 }
-.platform-windows:hover { background: #514a45; }
 .platform-mobile {
   display: grid;
   justify-items: center;
