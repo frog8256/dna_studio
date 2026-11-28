@@ -20,13 +20,14 @@ const Laptop = memo(function Laptop({ progress, wordmark }: { progress: number; 
   const lift = ease(progress, 2.56, 2.75) * (1 - ease(progress, 2.85, 3.05))
   const keyboard = ease(progress, 2.20, 2.40) * (1 - ease(progress, 2.98, 3.18))
   const press = ease(progress, 2.42, 2.60) * (1 - ease(progress, 2.85, 2.98))
+  const isWindowed = progress >= 2.66
   const layout = {
     left: `${50 + 140 * leave}%`,
     '--device-scale': .954 + .046 * ease(progress, 0, .88),
     '--app-left': `${9 - 2 * moveAside}%`,
     '--app-width': `${82 - 17 * moveAside}%`,
     '--app-top': `${10 + 2 * moveAside - lift}%`,
-    '--app-layer': progress >= 2.66 ? 20 : 5,
+    '--app-layer': isWindowed ? 20 : 5,
     '--app-lift': 1 + .035 * lift,
     '--press': press,
   } as CSSProperties
@@ -44,7 +45,8 @@ const Laptop = memo(function Laptop({ progress, wordmark }: { progress: number; 
             <div className="story-os-dock">
               <i className="story-start"><b /><b /><b /><b /></i>
               <i className="story-folder-icon" /><i className="story-web-icon" />
-              <img src={planTo.icon} alt="" /><i className="story-mail-icon" />
+              {isWindowed && <img src={planTo.icon} alt="" />}
+              <i className="story-mail-icon" />
             </div>
             <StoryCalendar progress={progress} />
             <StoryWindows progress={progress} />
